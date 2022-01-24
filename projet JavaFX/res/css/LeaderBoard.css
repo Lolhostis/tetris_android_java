@@ -1,0 +1,9 @@
+#titre {
+    -fx-text-fill: linear-gradient(from 10% 10% to 100% 100%, rgba(217, 184, 85, 1), rgba(222, 221, 217, 1));
+    -fx-font-size: 30px;
+}
+
+Label {
+    -fx-text-fill: linear-gradient(from 10% 10% to 100% 100%, rgba(217, 184, 85, 1), rgba(222, 221, 217, 1));
+    -fx-font-size: 20px;
+}

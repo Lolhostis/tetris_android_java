@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="200.0" prefWidth="200.0" type="AnchorPane">
+
+    <VBox spacing="30" alignment="CENTER" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+        <Label text="Game Over. Voulez-vous rejouer ?" wrapText="true"
+               textAlignment="CENTER"/>
+
+        <HBox spacing="30" alignment="CENTER">
+            <Button text="Oui" onAction="#ClickConfirmationToGrille"/>
+            <Button text="Non" onAction="#ClickConfirmationToMenu"/>
+        </HBox>
+    </VBox>
+</fx:root>
