@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LéKubKiTomb</string>
+    <string name="LeaderboardButtonText">Leaderboard</string>
+    <string name="PlayButtonText">Play</string>
+    <string name="OptionsButtonText">Options</string>
+    <string name="BackToMenuButtonText">Retour au menu</string>
+    <string name="ControlesButtonText">Controles</string>
+    <string name="score">LeScore</string>
+    <string name="score_title">Score</string>
+    <string name="best_score">Le Best Score</string>
+    <string name="best_score_title">Best Score</string>
+    <string name="pause_title">Pause</string>
+    <string name="PauseText">Pause</string>
+    <string name="ContinueButtonText">Continuer</string>
+    <string name="BackToMenuPauseButtonText">Retour au menu</string>
+    <string name="ConfirmationOuiButtonText">Oui</string>
+    <string name="ConfirmationNonButtonText">Non</string>
+    <string name="ConfirmationText">La partie ne sera pas sauvegardée, voulez-vous vraiment quitter ?</string>
+</resources>
