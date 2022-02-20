@@ -1,0 +1,17 @@
+Button {
+
+    /* Texte */
+    -fx-pref-width: 150px;
+    -fx-font-size: 15px;
+    -fx-font-family: "verdana";
+    -fx-text-fill: white;
+
+    /* Background */
+    -fx-background-radius: 6px;
+    -fx-background-color: linear-gradient(from 10% 10% to 100% 100%, rgba(217, 184, 85, 1), rgba(222, 221, 217, 1));
+
+    /* Bordure */
+    -fx-border-radius: 5px;
+    -fx-border-color: white;
+
+}

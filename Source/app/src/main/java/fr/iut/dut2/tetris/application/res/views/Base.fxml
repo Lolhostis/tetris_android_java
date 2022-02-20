@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--Contenant-->
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/javafx" xmlns="http://javafx.com/javafx"
+            prefHeight="700.0" prefWidth="700.0" id="template">
+
+    <!--Contenu-->
+    <StackPane fx:id="basePane" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0"
+               AnchorPane.rightAnchor="0"/>
+</AnchorPane>

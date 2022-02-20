@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<fx:root xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
+         prefWidth="500" prefHeight="500" type="AnchorPane">
+
+    <VBox alignment="CENTER" spacing="15" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" fx:id="tabScores">
+        <Label text="LeaderBoard" id="titre"/>
+    </VBox>
+
+</fx:root>
+

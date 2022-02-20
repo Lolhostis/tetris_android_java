@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
+         prefHeight="400.0" prefWidth="600.0" alignment="CENTER" spacing="10" type="VBox" onKeyPressed="#ControlChange">
+
+    <Label text="Controles" id="titre"/>
+
+    <!--Chaque gridPlane correspond à une option de controle-->
+
+    <!--Input déplacement droite-->
+    <GridPane alignment="CENTER" hgap="10" minWidth="300">
+        <Button text="D" GridPane.columnIndex="0" onAction="#ClickControlsInputDepDroite" styleClass="buttons"
+                fx:id="Inputdepdroite"/>
+        <Label text="Décaler à droite" GridPane.columnIndex="1" styleClass="labels"/>
+    </GridPane>
+
+    <!--Input déplacement gauche-->
+    <GridPane alignment="CENTER" hgap="10">
+        <Button text="Q" GridPane.columnIndex="0" onAction="#ClickControlsInputDepGauche" styleClass="buttons"
+                fx:id="Inputdepgauche"/>
+        <Label text="Décaler à gauche" GridPane.columnIndex="1" styleClass="labels"/>
+    </GridPane>
+
+    <!--Input rotation droite-->
+    <GridPane alignment="CENTER" hgap="10">
+        <Button text="E" GridPane.columnIndex="0" onAction="#ClickControlsInputRotDroite" styleClass="buttons"
+                fx:id="Inputrotdroite"/>
+        <Label text="Rotation à droite" GridPane.columnIndex="1" styleClass="labels"/>
+    </GridPane>
+
+    <!--Input rotation gauch-->
+    <GridPane alignment="CENTER" hgap="10">
+        <Button text="A" GridPane.columnIndex="0" onAction="#ClickControlsInputRotGauche" styleClass="buttons"
+                fx:id="Inputrotgauche"/>
+        <Label text="Rotation à gauche" GridPane.columnIndex="1" styleClass="labels"/>
+    </GridPane>
+
+    <!--Input rotation accélération-->
+    <GridPane alignment="CENTER" hgap="10">
+        <Button text="S" GridPane.columnIndex="0" onAction="#ClickControlsInputAcceleration" styleClass="buttons"
+                fx:id="Inputacc"/>
+        <Label text="Accélérer" GridPane.columnIndex="1" styleClass="labels"/>
+    </GridPane>
+
+    <HBox spacing="20" alignment="CENTER" style="-fx-padding : 20 0 0 20;">
+        <Button text="Annuler" onAction="#ClickAnnulation"/>
+        <Button text="Reinitialiser les touches" onAction="#ClickReinitialisation"/>
+        <Button text="Valider" onAction="#ClickValidation"/>
+    </HBox>
+</fx:root>
