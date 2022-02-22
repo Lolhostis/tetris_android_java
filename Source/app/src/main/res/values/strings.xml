@@ -4,7 +4,6 @@
     <string name="PlayButtonText">Play</string>
     <string name="OptionsButtonText">Options</string>
     <string name="BackToMenuButtonText">Retour au menu</string>
-    <string name="ControlesButtonText">Controles</string>
     <string name="score">LeScore</string>
     <string name="score_title">Score</string>
     <string name="best_score">Le Best Score</string>
