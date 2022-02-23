@@ -3,16 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout-land/grille_window.xml" value="0.19268077601410935" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout-land/main_window.xml" value="0.1" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout-night/grille_window.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout-night/options_window.xml" value="0.1" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout-night/pause_window.xml" value="0.16" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout/confirmation_window.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout/grille_window.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout/main_window.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout/options_window.xml" value="0.1" />
-        <entry key="..\:/Users/msuch/AndroidStudioProjects/1ereApplication/Source/app/src/main/res/layout/pause_window.xml" value="0.192481884057971" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout-land/grille_window.xml" value="0.19091710758377425" />
