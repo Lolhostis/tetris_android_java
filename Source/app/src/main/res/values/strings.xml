@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LéKubKiTomb</string>
+    <string name="app_name">Lalala</string>
     <string name="LeaderboardButtonText">Leaderboard</string>
     <string name="PlayButtonText">Play</string>
     <string name="OptionsButtonText">Options</string>
@@ -15,4 +15,8 @@
     <string name="ConfirmationOuiButtonText">Oui</string>
     <string name="ConfirmationNonButtonText">Non</string>
     <string name="ConfirmationText">La partie ne sera pas sauvegardée, voulez-vous vraiment quitter ?</string>
+    <string name="DiffFacile">Facile</string>
+    <string name="DiffNormale">Normal</string>
+    <string name="DiffDifficile">Difficile</string>
+    <string name="DiffExtreme">Extrême</string>
 </resources>

@@ -30,6 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
@@ -58,6 +59,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/TexteDifficulte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

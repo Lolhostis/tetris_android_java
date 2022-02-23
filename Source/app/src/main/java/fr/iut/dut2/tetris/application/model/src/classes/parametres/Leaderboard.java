@@ -13,7 +13,10 @@ public class Leaderboard implements Serializable {
     public List<Integer> scores = new LinkedList<>();
 
     public Leaderboard() {
-        chargerFichier();
+    }
+
+    public void setScores(List<Integer> scores) {
+        this.scores = scores;
     }
 
     public List<Integer> getScores() {

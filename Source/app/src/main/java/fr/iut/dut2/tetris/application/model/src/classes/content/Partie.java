@@ -1,6 +1,10 @@
 package fr.iut.dut2.tetris.application.model.src.classes.content;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
 import fr.iut.dut2.tetris.application.model.src.classes.content.thread.Play;
 import fr.iut.dut2.tetris.application.model.src.classes.parametres.Controles;
 import fr.iut.dut2.tetris.application.model.src.classes.parametres.Difficulte;
@@ -9,7 +13,7 @@ import fr.iut.dut2.tetris.application.model.src.classes.parametres.Leaderboard;
 /**
  * Classe représentant la partie, c'est la classe centrale de l'application.
  */
-public class Partie{
+public class Partie implements Parcelable {
 
     private final int nbColonnes;
     private final Leaderboard leaderboard;
@@ -34,6 +38,57 @@ public class Partie{
         controles = new Controles();
         difficulte = new Difficulte();
     }
+
+    protected Partie(Parcel in) {
+        nbColonnes = in.readInt();
+        nbLignes = in.readInt();
+        points = in.readInt();
+
+        Log.d("ParcelPartie", "NbColonnes : " + nbColonnes);
+        Log.d("ParcelPartie", "NbLignes : " + nbLignes);
+        Log.d("ParcelPartie", "Points : " + points);
+
+        grille = new Play(nbLignes, nbColonnes, this);
+        leaderboard = new Leaderboard();
+
+        int t = in.readInt();
+
+        while(t != -1) {
+            leaderboard.addScore(t);
+            t = in.readInt();
+        }
+        String message = "Leaderboard : ";
+        int cpt = 0;
+        for(Integer i : leaderboard.getScores()){
+            if(cpt == leaderboard.getScores().size() - 1 ){
+                message += i;
+            }
+            else{
+                message += i + " | ";
+            }
+            cpt++;
+        }
+
+        Log.d("ParcelPartie", message);
+
+        controles = new Controles();
+        difficulte = new Difficulte();
+        difficulte.setDifficulte(in.readInt());
+
+        Log.d("ParcelPartie", "Difficulté : " + difficulte.getDifficulte());
+    }
+
+    public static final Creator<Partie> CREATOR = new Creator<Partie>() {
+        @Override
+        public Partie createFromParcel(Parcel in) {
+            return new Partie(in);
+        }
+
+        @Override
+        public Partie[] newArray(int size) {
+            return new Partie[size];
+        }
+    };
 
     public Difficulte getDifficulte() {
         return difficulte;
@@ -121,6 +176,31 @@ public class Partie{
      */
     public Leaderboard getLeaderboard() {
         return leaderboard;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(nbColonnes);
+        parcel.writeInt(nbLignes);
+        parcel.writeInt(points);
+
+        leaderboard.addScore(800);
+        leaderboard.addScore(500);
+        leaderboard.addScore(1500);
+
+        int cpt = 0;
+        while(cpt < leaderboard.scores.size()){
+            parcel.writeInt(leaderboard.scores.get(cpt));
+            cpt++;
+        }
+        parcel.writeInt(-1);
+
+        parcel.writeInt(difficulte.getDifficulte());
     }
 
     /*@Override

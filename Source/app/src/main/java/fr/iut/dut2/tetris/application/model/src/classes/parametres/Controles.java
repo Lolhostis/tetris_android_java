@@ -13,10 +13,6 @@ public class Controles implements Serializable {
     private String rotgauche;
     private String acceleration;
 
-    public Controles() {
-        initialiser();
-    }
-
     public String getDepdroite() {
         return depdroite;
     }
@@ -55,58 +51,5 @@ public class Controles implements Serializable {
 
     public void setAcceleration(String acceleration) {
         this.acceleration = acceleration;
-    }
-
-    private void setDefault() {
-        setAcceleration("S");
-        setDepgauche("Q");
-        setDepdroite("D");
-        setRotdroite("E");
-        setRotgauche("A");
-    }
-
-    public void reinitialiser() {
-        setDefault();
-    }
-
-    public void initialiser() {
-
-        URL s = requireNonNull(Controles.class.getResource("/persistance/Controls.ser"));
-        try {
-            File f = new File(s.toURI());
-            ObjectInputStream reader = new ObjectInputStream(new FileInputStream(f));
-            setDepdroite((String) reader.readObject());
-            setDepgauche((String) reader.readObject());
-            setRotdroite((String) reader.readObject());
-            setRotgauche((String) reader.readObject());
-            setAcceleration((String) reader.readObject());
-        } catch (IOException | URISyntaxException | ClassNotFoundException e2) {
-            e2.printStackTrace();
-        }
-    }
-
-    public void valider() {
-        URL s = requireNonNull(Controles.class.getResource("/persistance/Controls.ser"));
-        File f = null;
-        try {
-            f = new File(s.toURI());
-            if (!f.exists()) {
-                if (f.createNewFile())
-                    setDefault();
-                else
-                    throw new Exception("Le fichier n'a pas été créé correctement.");
-            }
-            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(f));
-            writer.writeObject(getDepdroite());
-            writer.writeObject(getDepgauche());
-            writer.writeObject(getRotdroite());
-            writer.writeObject(getRotgauche());
-            writer.writeObject(getAcceleration());
-        } catch (FileNotFoundException e) {
-            System.out.println("Fichier \"" + f.getName() + "\" non trouvé \n" +
-                    "Chemin : " + f.getPath());
-        } catch (Exception e2) {
-            e2.printStackTrace();
-        }
     }
 }

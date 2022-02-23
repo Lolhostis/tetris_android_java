@@ -32,17 +32,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView18">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/Grille"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toStartOf="@+id/Scores"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/Scores"
             android:layout_width="147dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
