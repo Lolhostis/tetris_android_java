@@ -17,6 +17,8 @@ public class GrilleWindow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("TimeLine", "Grille started");
         setContentView(R.layout.grille_window);
+       // Designer designer = new Designer();
+     //   designer.chargerGrille(new Partie(x,y));
     }
 
     @Override

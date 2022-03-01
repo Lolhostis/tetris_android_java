@@ -12,9 +12,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/confirmation_window.xml" value="0.33" />
         <entry key="app/src/main/res/layout/controls_window.xml" value="0.22552083333333334" />
-        <entry key="app/src/main/res/layout/grille_window.xml" value="0.18930041152263374" />
+        <entry key="app/src/main/res/layout/grille_window.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/main_window.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/options_window.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/pause_window.xml" value="0.2477355072463768" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16875" />
       </map>
     </option>
   </component>
