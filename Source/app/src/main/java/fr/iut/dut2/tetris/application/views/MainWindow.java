@@ -6,15 +6,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.dut2.tetris.R;
+import fr.iut.dut2.tetris.application.controlleurs.MainController;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 
 public class MainWindow extends AppCompatActivity {
 
     private Partie p;
+    private MainController controller;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class MainWindow extends AppCompatActivity {
         if(p == null){
             p = new Partie(24,12);
         }
-
+        controller = new MainController(this, p);
     }
 
     @Override
@@ -49,23 +52,18 @@ public class MainWindow extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     public void MenuToOptions(View view) {
-        Intent MenuOptions = new Intent(this, OptionsWindow.class);
-        MenuOptions.putExtra("Partie", p);
-        startActivity(MenuOptions);
+        controller.MenuToOptions(view);
     }
 
     public void MenuToLeaderboard(View view) {
-        Intent MenuLeaderboard = new Intent(this, LeaderboardWindow.class);
-        startActivity(MenuLeaderboard);
+        controller.MenuToLeaderboard(view);
     }
 
     public void MenuToGrille(View view){
-        Intent MenuGrille = new Intent(this, GrilleWindow.class);
-        startActivity(MenuGrille);
+        controller.MenuToGrille(view);
     }
 
     @Override

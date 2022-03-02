@@ -44,9 +44,9 @@ public class Partie implements Parcelable {
         nbLignes = in.readInt();
         points = in.readInt();
 
-        Log.d("ParcelPartie", "NbColonnes : " + nbColonnes);
+        /*Log.d("ParcelPartie", "NbColonnes : " + nbColonnes);
         Log.d("ParcelPartie", "NbLignes : " + nbLignes);
-        Log.d("ParcelPartie", "Points : " + points);
+        Log.d("ParcelPartie", "Points : " + points);*/
 
         grille = new Play(nbLignes, nbColonnes, this);
         leaderboard = new Leaderboard();
@@ -59,7 +59,7 @@ public class Partie implements Parcelable {
         }
         String message = "Leaderboard : ";
         int cpt = 0;
-        for(Integer i : leaderboard.getScores()){
+        /*for(Integer i : leaderboard.getScores()){
             if(cpt == leaderboard.getScores().size() - 1 ){
                 message += i;
             }
@@ -67,15 +67,15 @@ public class Partie implements Parcelable {
                 message += i + " | ";
             }
             cpt++;
-        }
+        }*/
 
-        Log.d("ParcelPartie", message);
+        //Log.d("ParcelPartie", message);
 
         controles = new Controles();
         difficulte = new Difficulte();
         difficulte.setDifficulte(in.readInt());
 
-        Log.d("ParcelPartie", "Difficulté : " + difficulte.getDifficulte());
+        //Log.d("ParcelPartie", "Difficulté : " + difficulte.getDifficulte());
     }
 
     public static final Creator<Partie> CREATOR = new Creator<Partie>() {

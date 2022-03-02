@@ -1,7 +1,6 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.os.Bundle;
-import android.util.Log;
+import android.os.Bundle;;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -10,15 +9,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.dut2.tetris.R;
+import fr.iut.dut2.tetris.application.controlleurs.OptLeadController;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 
 
 public class OptionsWindow extends AppCompatActivity {
+
+    private OptLeadController controller;
+    private Partie p;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options_window);
-        Partie partie = getIntent().getParcelableExtra("Partie");
+        p = getIntent().getParcelableExtra("Partie");
+        controller = new OptLeadController(this, p);
         SeekBar bar = findViewById(R.id.seekBar2);
         bar.setKeyProgressIncrement(1);
         bar.setMax(3);
@@ -35,7 +40,7 @@ public class OptionsWindow extends AppCompatActivity {
                     case 3 : textView.setText(R.string.DiffExtreme); break;
                 }
 
-                partie.getDifficulte().setDifficulte(i);
+                p.getDifficulte().setDifficulte(i);
             }
 
             @Override
@@ -50,7 +55,7 @@ public class OptionsWindow extends AppCompatActivity {
         });
 
         TextView textView = findViewById(R.id.TexteDifficulte);
-        switch (partie.getDifficulte().getDifficulte()){
+        switch (p.getDifficulte().getDifficulte()){
             case 0 : textView.setText(R.string.DiffFacile); break;
             case 1 : textView.setText(R.string.DiffNormale); break;
             case 2 : textView.setText(R.string.DiffDifficile); break;
@@ -59,6 +64,6 @@ public class OptionsWindow extends AppCompatActivity {
     }
 
     public void OptionsToMenu(View view) {
-        finish();
+        controller.RetourAuMenu(view);
     }
 }
