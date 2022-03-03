@@ -1,12 +1,15 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.content.Intent;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,9 +22,33 @@ public class MainWindow extends AppCompatActivity {
     private Partie p;
     private MainController controller;
 
+    private boolean stop = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SensorManager manager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = manager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        SensorEventListener listener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                String message = sensorEvent.sensor.getName() + " | ";
+                for(float f :  sensorEvent.values){
+                    message += f + " | ";
+                }
+                TextView text = findViewById(R.id.value);
+                Log.d("Sensors", message);
+                text.setText(message);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+
+            }
+        };
+
+        manager.registerListener(listener,sensor,10);
         setContentView(R.layout.main_window);
         if(p == null){
             p = new Partie(24,12);
@@ -71,19 +98,13 @@ public class MainWindow extends AppCompatActivity {
         //On désactive le bouton en ne mettant aucune instruction
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-
-            Log.d("Transfer", "Request code : " + requestCode);
-            Log.d("Transfer", "Result code : " + resultCode);
-
-            Log.d("Transfer", "Coming from Options");
-            assert data != null;
-            p = data.getParcelableExtra("Partie");
+    public void onSensorChanged(SensorEvent event){
+        String message = event.sensor.getName() + " | ";
+        for(float f :  event.values){
+            message += f + " | ";
         }
-
-
+        TextView text = findViewById(R.id.value);
+        Log.d("Sensors", message);
+        text.setText(message);
     }
 }

@@ -1,5 +1,7 @@
 package fr.iut.dut2.tetris.application.model.src.classes.content.thread;
 
+import android.util.Log;
+
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
 import fr.iut.dut2.tetris.application.model.src.classes.content.grille.Grille;
@@ -43,13 +45,14 @@ public class Play extends Grille implements Runnable {
                         cpt++;
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
+                        Log.d("ThreadGrille", "Thread stopped running due to an interruption");
                         return;
                     }
                     movePiece(MovePiece.DESCENDRE);
                     update();
                 }
 
-            } while (currentPiece.canGoBas());
+            } while (currentPiece.canGoBas() && running);
             this.type = 0;
             currentPiece.dessiner();
             clearFullLine();
@@ -57,6 +60,7 @@ public class Play extends Grille implements Runnable {
             update();
         }
         if (!running) {
+            Log.d("ThreadGrille", "Thread stopped running due to running ended signal");
             System.out.println("Arret");
             Thread.currentThread().interrupt();
             System.out.println("Thread \"" + Thread.currentThread().getName() + "\" is interrupted");

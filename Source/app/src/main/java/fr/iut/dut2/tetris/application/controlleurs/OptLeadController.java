@@ -12,7 +12,7 @@ import fr.iut.dut2.tetris.application.views.MainWindow;
 public class OptLeadController {
 
     private final Activity context;
-    private Partie p;
+    private final Partie p;
 
     private final int OPTIONS_RESULT_MENU_CODE = 10;
     private final int LEADERBOARD_RESULT_MENU_CODE = 11;

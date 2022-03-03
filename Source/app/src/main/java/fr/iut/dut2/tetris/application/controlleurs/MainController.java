@@ -1,6 +1,5 @@
 package fr.iut.dut2.tetris.application.controlleurs;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -16,13 +15,13 @@ import fr.iut.dut2.tetris.application.views.OptionsWindow;
 
 public class MainController {
 
-    private AppCompatActivity context;
+    private final AppCompatActivity context;
     private Partie p;
 
     private final int OPTIONS_RESULT_CODE = 10;
     private final int LEADERBOARD_RESULT_CODE = 11;
 
-    private ActivityResultLauncher<Intent> mStartForResult;
+    private final ActivityResultLauncher<Intent> mStartForResult;
 
     public MainController(AppCompatActivity context, Partie partie){
         this.context = context;
@@ -50,7 +49,6 @@ public class MainController {
     }
 
     public void MenuToOptions(View view) {
-
         Intent MenuOptions = new Intent(context, OptionsWindow.class);
         MenuOptions.putExtra("Partie", p);
 
@@ -66,6 +64,8 @@ public class MainController {
 
     public void MenuToGrille(View view){
         Intent MenuGrille = new Intent(context, GrilleWindow.class);
-        context.startActivity(MenuGrille);
+        MenuGrille.putExtra("Partie", p);
+
+        mStartForResult.launch(MenuGrille);
     }
 }
