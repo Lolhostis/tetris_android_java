@@ -9,7 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
-import fr.iut.dut2.tetris.application.views.GrilleWindow;
+import fr.iut.dut2.tetris.application.views.GrilleWindowActivity;
 import fr.iut.dut2.tetris.application.views.LeaderboardWindow;
 import fr.iut.dut2.tetris.application.views.OptionsWindow;
 
@@ -63,7 +63,7 @@ public class MainController {
     }
 
     public void MenuToGrille(View view){
-        Intent MenuGrille = new Intent(context, GrilleWindow.class);
+        Intent MenuGrille = new Intent(context, GrilleWindowActivity.class);
         MenuGrille.putExtra("Partie", p);
 
         mStartForResult.launch(MenuGrille);

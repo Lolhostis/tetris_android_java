@@ -1,22 +1,32 @@
 package fr.iut.dut2.tetris.application.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import fr.iut.dut2.tetris.R;
 import fr.iut.dut2.tetris.application.controlleurs.GrilleController;
+import fr.iut.dut2.tetris.application.model.designers.Grille;
+import fr.iut.dut2.tetris.application.model.designers.PositionPiece;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 
-public class GrilleWindow extends AppCompatActivity {
+public class GrilleWindowActivity extends AppCompatActivity {
 
     private GrilleController controller;
     private Partie p;
     private Thread thread;
+
+    private TextView textView_score;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +38,13 @@ public class GrilleWindow extends AppCompatActivity {
         thread = new Thread(p.getGrille());
         Log.d("ThreadGrille","Thread created (" + getClass().getSimpleName() + ")");
         controller = new GrilleController(this, p);
+
+//        Grille maGrille = new Grille(this); //FAUX - sinon instancie 2 grilles car il y en a déjà une instanciée à partir de la vue .XML
+        Grille maGrille = findViewById(R.id.Grille);
+        maGrille.dessinerGrille(p);
+        List<PositionPiece> liste =  new ArrayList<>();
+        liste.add(new PositionPiece(1,1));
+        maGrille.dessinerPiece(1, liste);
 
        // Designer designer = new Designer();
      //   designer.chargerGrille(new Partie(x,y));
