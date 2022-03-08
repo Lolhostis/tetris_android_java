@@ -26,11 +26,11 @@ import fr.iut.dut2.tetris.application.model.src.classes.content.pieces.PieceBase
 public class Grille extends View implements Designer {
     private Paint mPaint;
     private Partie partie;
-    private int hauteurCase;
-    private int largeurCase;
+    private int tailleCase;
     private int nbLignes;
     private int nbColonnes;
     private List<PositionPiece> listePosPiece;
+    private int color;
 
     public Grille(Context context) {
         super(context);
@@ -60,8 +60,6 @@ public class Grille extends View implements Designer {
         setWillNotDraw(false);
     }
 
-    //https://koor.fr/Java/Android/Sudoku.wp
-
     /*
    public Designer(View view) {
        // super(view);
@@ -73,6 +71,7 @@ public class Grille extends View implements Designer {
         nbLignes = partie.getNbLignes();
         nbColonnes = partie.getNbColonnes();
         listePosPiece = new ArrayList<>();
+        tailleCase = 0;
     }
 
     //Dessine la grille de jeu
@@ -85,28 +84,67 @@ public class Grille extends View implements Designer {
         //hauteur du l'écran
         int height = getMeasuredHeight();
 
+        //On prend en référence le plus petit, donc ici la largeur
         //largeur du canvas
-       // int width = canvas.getWidth();
+        // int width = canvas.getWidth();
         //hauteur du canvas
-      //  int height = getHeight();
+        //  int height = getHeight();
+        mPaint.setColor(Color.BLACK);
 
         if(nbLignes <= 0 || nbColonnes <= 0) return;
-        largeurCase = width/nbLignes;
-        hauteurCase = height/nbColonnes;
 
-       //Dessiner la grille
+        if(width<height){
+            tailleCase = width/nbLignes;
+        }else{
+            tailleCase = height/nbColonnes;
+        }
+
+        //Dessiner la grille
         //dessiner les colonnes :
-        for (int i = 0; i < width; i += largeurCase) {
+        /*
+        for (int i = 0; i < width; i += tailleCase) { //largeurCase
             canvas.drawLine(i, 0, i, height, mPaint);
         }
         //Dessiner les lignes :
-        for (int j = 0; j < height; j += hauteurCase) {
+        for (int j = 0; j < height; j += tailleCase) { // hauteurCase
             canvas.drawLine(0, j, width, j, mPaint);
         }
 
+
+         for (int i = 0; i < nbLignes; i += 1) { //largeurCase
+            canvas.drawLine(i * tailleCase, 0, i * tailleCase, height, mPaint);
+        }
+
+        for (int j = 0; j < nbColonnes; j += 1) {
+            canvas.drawLine(0, j * tailleCase, width, j * tailleCase, mPaint);
+        }
+
+         */
+
+        for (int y = 0; y <= nbLignes; y += 1) {
+            for (int x = 1; x <= nbColonnes; x += 1) {
+                canvas.drawLine(y * tailleCase, x, y * tailleCase, x * tailleCase, mPaint);
+            }
+        }
+
+        for (int j = 0; j <= nbColonnes; j += 1) {
+            canvas.drawLine(0, j * tailleCase, width, j * tailleCase, mPaint);
+        }
+
+        /*
+        for (int i = 1; i <= nbLignes; i += 1) {
+            for (int j = 1; j <= nbColonnes; j += 1) {
+                canvas.drawLine(j, i * tailleCase , i * tailleCase + tailleCase, i * tailleCase, mPaint);
+            }
+        }
+         */
+
+
+        mPaint.setColor(color);
         //Dessiner la pièce
         for (PositionPiece position: listePosPiece) {
-            canvas.drawRect(position.getX() * largeurCase, position.getY() * hauteurCase, position.getX() * largeurCase + largeurCase, position.getY() * hauteurCase + hauteurCase, mPaint);
+            //canvas.drawRect(position.getX() * largeurCase, position.getY() * hauteurCase, position.getX() * largeurCase + largeurCase, position.getY() * hauteurCase + hauteurCase, mPaint);
+            canvas.drawRect(position.getX() * tailleCase, position.getY() * tailleCase, position.getX() * tailleCase + tailleCase, position.getY() * tailleCase + tailleCase, mPaint);
         }
     }
 
@@ -119,18 +157,17 @@ public class Grille extends View implements Designer {
 
         switch (p){
             case 0:
-                Color.blue(1);
+                color = Color.BLUE;
                 break;
 
             case 1:
-                Color.red(1);
+                color = Color.RED;
                 break;
 
             case 2:
-                Color.green(1);
+                color = Color.GREEN;
                 break;
         };
-
 
         mPaint.setColor(p);
         invalidate();

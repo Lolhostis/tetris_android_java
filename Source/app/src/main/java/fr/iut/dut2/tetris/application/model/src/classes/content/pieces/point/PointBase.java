@@ -17,4 +17,6 @@ public abstract class PointBase {
         this.x = x;
         this.y = y;
     }
+
+
 }

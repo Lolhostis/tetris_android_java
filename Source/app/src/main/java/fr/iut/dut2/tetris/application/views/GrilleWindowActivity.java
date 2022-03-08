@@ -43,7 +43,14 @@ public class GrilleWindowActivity extends AppCompatActivity {
         Grille maGrille = findViewById(R.id.Grille);
         maGrille.dessinerGrille(p);
         List<PositionPiece> liste =  new ArrayList<>();
-        liste.add(new PositionPiece(1,1));
+        for(int i=1;i<p.getNbColonnes();i++){
+            liste.add(new PositionPiece(2,i));
+        }
+
+        liste.remove(4);
+        liste.remove(4);
+        liste.remove(6);
+
         maGrille.dessinerPiece(1, liste);
 
        // Designer designer = new Designer();
