@@ -5,6 +5,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import fr.iut.dut2.tetris.application.model.src.classes.content.observateurs.ObservateurAbstrait;
+import fr.iut.dut2.tetris.application.model.src.classes.content.observateurs.ObservateurGrille;
 import fr.iut.dut2.tetris.application.model.src.classes.content.thread.Play;
 import fr.iut.dut2.tetris.application.model.src.classes.parametres.Controles;
 import fr.iut.dut2.tetris.application.model.src.classes.parametres.Difficulte;
@@ -13,11 +18,11 @@ import fr.iut.dut2.tetris.application.model.src.classes.parametres.Leaderboard;
 /**
  * Classe représentant la partie, c'est la classe centrale de l'application.
  */
-public class Partie implements Parcelable {
+public class Partie implements Parcelable, Notifiyer {
 
     private final int nbColonnes;
     private final Leaderboard leaderboard;
-    //private final List<ObservateurAbstrait> observateurs = new LinkedList<>();
+    private final List<ObservateurAbstrait> observateurs = new LinkedList<>();
     private Controles controles;
     private int nbLignes;
     private int points;
@@ -203,7 +208,7 @@ public class Partie implements Parcelable {
         parcel.writeInt(difficulte.getDifficulte());
     }
 
-    /*@Override
+    @Override
     public void notifier() {
         for (ObservateurAbstrait obs : observateurs) {
             obs.update();
@@ -219,7 +224,7 @@ public class Partie implements Parcelable {
         observateurs.remove(observateur);
     }
 
-    public void GameOver() {
+    /*public void GameOver() {
         for (ObservateurAbstrait obs : observateurs) {
             ((ObservateurGrille) obs).gameOver();
         }

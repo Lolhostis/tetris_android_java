@@ -1,7 +1,5 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import fr.iut.dut2.tetris.R;
@@ -36,15 +33,15 @@ public class GrilleWindowActivity extends AppCompatActivity {
 
         p = getIntent().getParcelableExtra("Partie");
         thread = new Thread(p.getGrille());
-        Log.d("ThreadGrille","Thread created (" + getClass().getSimpleName() + ")");
+        Log.d("ThreadGrille", "Thread created (" + getClass().getSimpleName() + ")");
         controller = new GrilleController(this, p);
 
 //        Grille maGrille = new Grille(this); //FAUX - sinon instancie 2 grilles car il y en a déjà une instanciée à partir de la vue .XML
         Grille maGrille = findViewById(R.id.Grille);
         maGrille.dessinerGrille(p);
-        List<PositionPiece> liste =  new ArrayList<>();
-        for(int i=1;i<p.getNbColonnes();i++){
-            liste.add(new PositionPiece(2,i));
+        List<PositionPiece> liste = new ArrayList<>();
+        for (int i = 1; i < p.getNbColonnes(); i++) {
+            liste.add(new PositionPiece(2, i));
         }
 
         liste.remove(4);
@@ -53,16 +50,20 @@ public class GrilleWindowActivity extends AppCompatActivity {
 
         maGrille.dessinerPiece(1, liste);
 
-       // Designer designer = new Designer();
-     //   designer.chargerGrille(new Partie(x,y));
+        // Designer designer = new Designer();
+        //   designer.chargerGrille(new Partie(x,y));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(!p.getGrille().running) {
+        Log.d("ThreadGrille","Running : " + p.getGrille().running);
+        if (!p.getGrille().running) {
+            p.getGrille().running = true;
+            p.getGrille().paused = false;
             Log.d("ThreadGrille", "Thread has normally stopped, restarting... (" + getClass().getSimpleName() + ")");
             thread.start();
+
         }
     }
 
@@ -71,7 +72,10 @@ public class GrilleWindowActivity extends AppCompatActivity {
         super.onStop();
 
         Log.d("ThreadGrille", "Stopping thread due to app stop signal (" + getClass().getSimpleName() + ")");
-        thread.interrupt();
+        /*thread.interrupt();
+
+        p.getGrille().paused = false;
+        thread = new Thread(p.getGrille());*/
     }
 
     @Override
@@ -83,15 +87,21 @@ public class GrilleWindowActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d("ThreadGrille", "Pausing thread due to app pause signal (" + getClass().getSimpleName() + ")");
-        p.getGrille().paused = true;
+        if (!p.getGrille().paused) {
+            p.getGrille().paused = true;
+        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        p.getGrille().paused = false;
-        Log.d("ThreadGrille", "Continuing thread due to app resume signal (" + getClass().getSimpleName() + ")" );
+        if (p.getGrille().paused) {
+            p.getGrille().paused = false;
+        }
+
+        Log.d("ThreadGrille", "Continuing thread due to app resume signal (" + getClass().getSimpleName() + ")");
     }
 
     public void GrilleToPause(View view) {

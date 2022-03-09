@@ -12,7 +12,7 @@ import fr.iut.dut2.tetris.application.model.src.classes.content.grille.Grille;
 public class Play extends Grille implements Runnable {
 
     public boolean paused = false;
-    public boolean running = true;
+    public boolean running = false;
 
     /**
      * Constructeur d'un Play
@@ -28,9 +28,10 @@ public class Play extends Grille implements Runnable {
     @Override
     public void run() {
         float i = 750;
-        float cpt = 1;
+        int cpt = 1;
         addNewPiece();
         update();
+
         while (currentPiece.canGoBas() && running) {
             do {
                 if (!paused) {
@@ -43,6 +44,8 @@ public class Play extends Grille implements Runnable {
                             //noinspection BusyWait
                             CustomThread.sleep((long) ((long) i - (Math.sqrt(cpt) * 20)));
                         cpt++;
+                        Log.d("ThreadCounter",i - (Math.sqrt(cpt) * 20) + "");
+
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         Log.d("ThreadGrille", "Thread stopped running due to an interruption");

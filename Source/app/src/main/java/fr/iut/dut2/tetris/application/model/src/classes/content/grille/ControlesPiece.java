@@ -54,13 +54,13 @@ public class ControlesPiece{
         grille.type = rand.nextInt(7) + 1;
         PieceType ptype = PieceType.getType(grille.type);
         switch (ptype) {
-            case CARRE : grille.currentPiece = new PieceCarree(ptype, xPos, grille, grille.partie);
-            case I : grille.currentPiece = new PieceI(ptype, xPos, grille, grille.partie);
-            case L_DROITE : grille.currentPiece = new PieceLDroite(ptype, xPos, grille, grille.partie);
-            case L_GAUCHE : grille.currentPiece = new PieceLGauche(ptype, xPos, grille, grille.partie);
-            case S_DROITE : grille.currentPiece = new PieceSDroite(ptype, xPos, grille, grille.partie);
-            case S_GAUCHE : grille.currentPiece = new PieceSGauche(ptype, xPos, grille, grille.partie);
-            case T : grille.currentPiece = new PieceT(ptype, xPos, grille, grille.partie);
+            case CARRE : grille.currentPiece = new PieceCarree(ptype, xPos, grille, grille.partie); break;
+            case I : grille.currentPiece = new PieceI(ptype, xPos, grille, grille.partie); break;
+            case L_DROITE : grille.currentPiece = new PieceLDroite(ptype, xPos, grille, grille.partie); break;
+            case L_GAUCHE : grille.currentPiece = new PieceLGauche(ptype, xPos, grille, grille.partie); break;
+            case S_DROITE : grille.currentPiece = new PieceSDroite(ptype, xPos, grille, grille.partie); break;
+            case S_GAUCHE : grille.currentPiece = new PieceSGauche(ptype, xPos, grille, grille.partie); break;
+            case T : grille.currentPiece = new PieceT(ptype, xPos, grille, grille.partie); break;
             default : throw new IllegalStateException("Unexpected value: " + ptype);
         }
         //grille.currentPiece.dessiner();

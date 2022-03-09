@@ -15,11 +15,11 @@ public class GrilleController {
     public GrilleController(Activity context, Partie p){
         this.context = context;
         this.p = p;
+
     }
 
     public void GrilleToPause() {
         Intent intent = new Intent(context, PauseWindow.class);
-        p.getGrille().paused = true;
         Log.d("Grille", "Grille paused");
         intent.putExtra("Partie",p);
 

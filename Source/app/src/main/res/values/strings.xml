@@ -19,4 +19,6 @@
     <string name="DiffNormale">Normal</string>
     <string name="DiffDifficile">Difficile</string>
     <string name="DiffExtreme">Extrême</string>
+    <string name="PlayAgainText">Rejouer</string>
+    <string name="GameOverText">Vous avez perdu, voulez-vous rejouer ?</string>
 </resources>

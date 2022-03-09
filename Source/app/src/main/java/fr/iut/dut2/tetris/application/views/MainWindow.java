@@ -1,6 +1,5 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -22,7 +21,7 @@ public class MainWindow extends AppCompatActivity {
     private Partie p;
     private MainController controller;
 
-    private boolean stop = true;
+    // private boolean stop = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,9 +36,9 @@ public class MainWindow extends AppCompatActivity {
                 for(float f :  sensorEvent.values){
                     message += f + " | ";
                 }
-                TextView text = findViewById(R.id.value);
+                //TextView text = findViewById(R.id.value);
                 Log.d("Sensors", message);
-                text.setText(message);
+                //text.setText(message);
             }
 
             @Override
@@ -96,15 +95,5 @@ public class MainWindow extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //On désactive le bouton en ne mettant aucune instruction
-    }
-
-    public void onSensorChanged(SensorEvent event){
-        String message = event.sensor.getName() + " | ";
-        for(float f :  event.values){
-            message += f + " | ";
-        }
-        TextView text = findViewById(R.id.value);
-        Log.d("Sensors", message);
-        text.setText(message);
     }
 }

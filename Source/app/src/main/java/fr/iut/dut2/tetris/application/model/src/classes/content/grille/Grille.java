@@ -28,7 +28,7 @@ public class Grille extends GrilleBase {
      */
     protected void gameOver() {
         System.out.println("Game Over.");
-        //partie.GameOver();
+        //partie.GameOver(); //Début du lancement du signal gameOver (Le thread nous envoie la)
     }
 
     /**

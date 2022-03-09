@@ -9,8 +9,8 @@ import fr.iut.dut2.tetris.application.views.ConfirmationWindow;
 
 public class PauseController {
 
-    private Activity context;
-    private Partie p;
+    private final Activity context;
+    private final Partie p;
 
     public PauseController(Activity context, Partie p){
         this.context = context;
@@ -20,6 +20,7 @@ public class PauseController {
 
     public void PauseToGrille(){
         Log.d("Grille", "Grille unpaused");
+        p.getGrille().paused = false;
         context.finish();
     }
 
