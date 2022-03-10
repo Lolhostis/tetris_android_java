@@ -1,5 +1,10 @@
 package fr.iut.dut2.tetris.application.views;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.iut.dut2.tetris.R;
@@ -16,6 +22,7 @@ import fr.iut.dut2.tetris.application.controlleurs.GrilleController;
 import fr.iut.dut2.tetris.application.model.designers.Grille;
 import fr.iut.dut2.tetris.application.model.designers.PositionPiece;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
+import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
 
 public class GrilleWindowActivity extends AppCompatActivity {
 
@@ -24,6 +31,7 @@ public class GrilleWindowActivity extends AppCompatActivity {
     private Thread thread;
 
     private TextView textView_score;
+    private long elapsed_time = System.nanoTime();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +57,71 @@ public class GrilleWindowActivity extends AppCompatActivity {
         liste.remove(6);
 
         maGrille.dessinerPiece(1, liste);
+
+        SensorManager manager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        SensorEventListener listener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                String message = sensorEvent.sensor.getName() + " | ";
+
+                long current_time = System.nanoTime();
+                float[] data = sensorEvent.values;
+                long waitTime = (long) (2  * Math.pow(10,8));
+
+                if(sensorEvent.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION){
+                    int sensitivity = 5;
+
+
+
+                    Log.d("Mouvement","" + (current_time - elapsed_time));
+
+                    if(current_time - elapsed_time > waitTime) {
+                        if (data[0] >= sensitivity) {
+                            controller.MovementApplier(MovePiece.DROITE);
+                            elapsed_time = System.nanoTime();
+                        } else if (data[0] <= -sensitivity) {
+                            controller.MovementApplier(MovePiece.GAUCHE);
+                            elapsed_time = System.nanoTime();
+                        }
+                    }
+                }
+                else if(sensorEvent.sensor.getType() == Sensor.TYPE_GYROSCOPE){
+                    int sensitivity = 5;
+
+                    if(current_time - elapsed_time > waitTime) {
+                        if (data[1] >= sensitivity) {
+                            controller.MovementApplier(MovePiece.TOURNER_DROITE);
+                            elapsed_time = System.nanoTime();
+                        } else if (data[1] <= -sensitivity) {
+                            controller.MovementApplier(MovePiece.TOURNER_GAUCHE);
+                            elapsed_time = System.nanoTime();
+                        }
+                    }
+                }
+
+
+                for(float f :  sensorEvent.values){
+                    message += f + " | ";
+                }
+                //TextView text = findViewById(R.id.value);
+                Log.d("Sensors", message);
+                //text.setText(message);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+
+            }
+        };
+
+        manager.registerListener(listener,sensor,10);
+
+        Sensor sensorRot = manager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        manager.registerListener(listener,sensorRot, 10);
+
+
+
 
         // Designer designer = new Designer();
         //   designer.chargerGrille(new Partie(x,y));

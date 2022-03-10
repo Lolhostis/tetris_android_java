@@ -1,6 +1,8 @@
 package fr.iut.dut2.tetris.application.model.src.classes.content.grille;
 
 
+import android.util.Log;
+
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 
 /**
@@ -75,6 +77,8 @@ public class ControlesGrille{
      * @param grille grille de jeu
      */
     void clear(int x, int y, int[][] grille) {
+        Log.d("Position",y + " | " + x);
+
         if (x >= 0 || x < nombreDeColonne - 1 || y >= 0 || y < nombreDeLigne)
             grille[y][x] = -1;
     }

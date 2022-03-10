@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
+import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
 import fr.iut.dut2.tetris.application.views.PauseWindow;
 
 public class GrilleController {
@@ -16,6 +17,11 @@ public class GrilleController {
         this.context = context;
         this.p = p;
 
+    }
+
+    public void MovementApplier(MovePiece move){
+        p.getGrille().movePiece(move);
+        Log.d("Movement",move.toString());
     }
 
     public void GrilleToPause() {

@@ -46,7 +46,7 @@ public class Grille extends GrilleBase {
      */
     public void movePiece(MovePiece mtype) {
         ctrlPiece.movePiece(mtype, this);
-        //partie.notifier();
+        partie.notifier();
     }
 
     /**

@@ -43,8 +43,8 @@ public class DeplaceurBase {
      */
     public void doMouvement(@NonNull MovePiece mtype, PointBase[] points, GrilleBase grille, Partie partie, Verifyer verifyer, TourneurBase tourneur) {
         switch (mtype) {
-            case GAUCHE : deplacerGauche(points, grille, verifyer);
-            case DROITE : deplacerDroite(points, grille, partie, verifyer);
+            case GAUCHE : deplacerGauche(points, grille, verifyer); break;
+            case DROITE : deplacerDroite(points, grille, partie, verifyer); break;
             case TOURNER_GAUCHE :
                 if (verifyer.canGoGauche(points, grille) && verifyer.canGoDroite(points, grille, partie)) {
                     tourneur.tournerGauche(points, piece.type, piece.rotation);
@@ -54,6 +54,7 @@ public class DeplaceurBase {
                         tmpRotation = 3;
                     piece.rotation = EtatRotation.getType(tmpRotation);
             }
+                break;
             case TOURNER_DROITE :
                 if (verifyer.canGoGauche(points, grille) && verifyer.canGoDroite(points, grille, partie)) {
                     tourneur.tournerDroite(points, piece.type, piece.rotation);
@@ -63,7 +64,8 @@ public class DeplaceurBase {
                         tmpRotation = 0;
                     piece.rotation = EtatRotation.getType(tmpRotation);
                 }
-            case DESCENDRE : descendre(points, grille, partie, verifyer);
+                break;
+            case DESCENDRE : descendre(points, grille, partie, verifyer); break;
         }
     }
 

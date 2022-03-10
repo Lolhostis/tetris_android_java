@@ -1,5 +1,7 @@
 package fr.iut.dut2.tetris.application.model.src.classes.content.pieces;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
@@ -71,6 +73,8 @@ public abstract class PieceBase {
         for (PointBase point : points) {
             this.grille.clear(point.x, point.y);
         }
+
+        Log.d("Position", "====================");
     }
 
     /**

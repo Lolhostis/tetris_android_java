@@ -27,27 +27,6 @@ public class MainWindow extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SensorManager manager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        Sensor sensor = manager.getDefaultSensor(Sensor.TYPE_GRAVITY);
-        SensorEventListener listener = new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent sensorEvent) {
-                String message = sensorEvent.sensor.getName() + " | ";
-                for(float f :  sensorEvent.values){
-                    message += f + " | ";
-                }
-                //TextView text = findViewById(R.id.value);
-                Log.d("Sensors", message);
-                //text.setText(message);
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int i) {
-
-            }
-        };
-
-        manager.registerListener(listener,sensor,10);
         setContentView(R.layout.main_window);
         if(p == null){
             p = new Partie(24,12);
