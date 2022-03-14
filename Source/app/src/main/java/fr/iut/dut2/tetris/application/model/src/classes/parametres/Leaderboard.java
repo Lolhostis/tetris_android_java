@@ -10,13 +10,9 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 public class Leaderboard implements Serializable {
-    public List<Integer> scores = new LinkedList<>();
+    private List<Integer> scores = new LinkedList<>();
 
     public Leaderboard() {
-    }
-
-    public void setScores(List<Integer> scores) {
-        this.scores = scores;
     }
 
     public List<Integer> getScores() {
@@ -24,7 +20,7 @@ public class Leaderboard implements Serializable {
     }
 
     public void addScore(int value) {
-        if (scores.size() >= 10) {
+        if (scores.size() >= 5) {
             scores.add(value);
             Collections.sort(scores);
             Collections.reverse(scores);
