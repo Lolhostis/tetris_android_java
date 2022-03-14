@@ -9,7 +9,7 @@ public class ObservateurGrille extends ObservateurAbstrait {
     @Override
     public void update() {
         value = sujet.getGrille();
-        //looker.dessinerGrille(); //Le moment où la grille se dessine
+      //  looker.dessinerGrille(); //Le moment où la grille se dessine
     }
 
     /*public void gameOver() { // Pour délencher la fenetre de gameOver

@@ -219,7 +219,6 @@ public class Partie implements Parcelable, Notifiyer {
         observateurs.add(observateur);
     }
 
-
     public void detach(ObservateurAbstrait observateur) {
         observateurs.remove(observateur);
     }

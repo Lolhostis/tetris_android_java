@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -14,14 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.iut.dut2.tetris.R;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
-import fr.iut.dut2.tetris.application.model.src.classes.content.pieces.PieceBase;
 
 public class Grille extends View implements Designer {
     private Paint mPaint;
@@ -29,7 +23,7 @@ public class Grille extends View implements Designer {
     private int tailleCase;
     private int nbLignes;
     private int nbColonnes;
-    private List<PositionPiece> listePosPiece;
+    private List<Coordonates> listePosPiece;
     private int color;
 
     public Grille(Context context) {
@@ -60,11 +54,6 @@ public class Grille extends View implements Designer {
         setWillNotDraw(false);
     }
 
-    /*
-   public Designer(View view) {
-       // super(view);
-    }
-     */
     @Override
     public void dessinerGrille(@NonNull Partie p) { //, Text Score
         partie = p;
@@ -72,9 +61,10 @@ public class Grille extends View implements Designer {
         nbColonnes = partie.getNbColonnes();
         listePosPiece = new ArrayList<>();
         tailleCase = 0;
+        //System.out.println();
     }
 
-    //Dessine la grille de jeu
+    //Dessine la grille de jeu (partie.grille)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -83,6 +73,9 @@ public class Grille extends View implements Designer {
         int width = getMeasuredWidth();
         //hauteur du l'écran
         int height = getMeasuredHeight();
+
+        int largeurCase;
+        int hauteurCase;
 
         //On prend en référence le plus petit, donc ici la largeur
         //largeur du canvas
@@ -93,71 +86,45 @@ public class Grille extends View implements Designer {
 
         if(nbLignes <= 0 || nbColonnes <= 0) return;
 
+        largeurCase = width/nbLignes;
+        hauteurCase = height/nbColonnes;
+
+        //pour faire des carrés :
+        /*
         if(width<height){
             tailleCase = width/nbLignes;
         }else{
             tailleCase = height/nbColonnes;
         }
+         */
+
+        int typePiece;
 
         //Dessiner la grille
-        //dessiner les colonnes :
-        /*
-        for (int i = 0; i < width; i += tailleCase) { //largeurCase
-            canvas.drawLine(i, 0, i, height, mPaint);
-        }
-        //Dessiner les lignes :
-        for (int j = 0; j < height; j += tailleCase) { // hauteurCase
-            canvas.drawLine(0, j, width, j, mPaint);
-        }
+        for (int x = 0; x < nbLignes; x += 1) {
+            for (int y = 0; y < nbColonnes; y += 1) {
+                //Dessiner la grille
+                //lignes
+                canvas.drawLine(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase, mPaint);
 
+                //colones
+                canvas.drawLine(x * largeurCase, y * hauteurCase, x * largeurCase, y * hauteurCase + hauteurCase, mPaint);
 
-         for (int i = 0; i < nbLignes; i += 1) { //largeurCase
-            canvas.drawLine(i * tailleCase, 0, i * tailleCase, height, mPaint);
-        }
+                //Dessiner les pieces
 
-        for (int j = 0; j < nbColonnes; j += 1) {
-            canvas.drawLine(0, j * tailleCase, width, j * tailleCase, mPaint);
-        }
-
-         */
-
-        for (int y = 0; y <= nbLignes; y += 1) {
-            for (int x = 1; x <= nbColonnes; x += 1) {
-                canvas.drawLine(y * tailleCase, x, y * tailleCase, x * tailleCase, mPaint);
+                typePiece = partie.getGrille().grille[x][y];
+                paintColor(typePiece);
+            //    mPaint.setColor(color);
+                canvas.drawRect(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase + hauteurCase, mPaint);
             }
-        }
-
-        for (int j = 0; j <= nbColonnes; j += 1) {
-            canvas.drawLine(0, j * tailleCase, width, j * tailleCase, mPaint);
-        }
-
-        /*
-        for (int i = 1; i <= nbLignes; i += 1) {
-            for (int j = 1; j <= nbColonnes; j += 1) {
-                canvas.drawLine(j, i * tailleCase , i * tailleCase + tailleCase, i * tailleCase, mPaint);
-            }
-        }
-         */
-
-
-        mPaint.setColor(color);
-        //Dessiner la pièce
-        for (PositionPiece position: listePosPiece) {
-            //canvas.drawRect(position.getX() * largeurCase, position.getY() * hauteurCase, position.getX() * largeurCase + largeurCase, position.getY() * hauteurCase + hauteurCase, mPaint);
-            canvas.drawRect(position.getX() * tailleCase, position.getY() * tailleCase, position.getX() * tailleCase + tailleCase, position.getY() * tailleCase + tailleCase, mPaint);
         }
     }
 
-    @Override
-    public void dessinerPiece(int p, List<PositionPiece> listeRectanglesPiece) {
-        if(listeRectanglesPiece == null) return;
-        for (PositionPiece position : listeRectanglesPiece) {
-            this.listePosPiece.add(position);
-        }
-
+    public void paintColor(int p) {
+        //pour chaque type p (représenté par un chiffre), on fait correspondre une couleur
         switch (p){
             case 0:
-                color = Color.BLUE;
+                color = Color.GRAY;
                 break;
 
             case 1:
@@ -167,10 +134,26 @@ public class Grille extends View implements Designer {
             case 2:
                 color = Color.GREEN;
                 break;
+
+            case 3:
+                color = Color.YELLOW;
+                break;
+
+            case 4:
+                color = Color.MAGENTA;
+                break;
+
+            case 5:
+                color = Color.BLUE;
+                break;
+
+            default:
+                color = Color.DKGRAY;
+                break;
         };
 
         mPaint.setColor(p);
         invalidate();
-      //  requestLayout();
+        //  requestLayout();
     }
 }

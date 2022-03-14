@@ -4,7 +4,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,13 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import fr.iut.dut2.tetris.R;
 import fr.iut.dut2.tetris.application.controlleurs.GrilleController;
 import fr.iut.dut2.tetris.application.model.designers.Grille;
-import fr.iut.dut2.tetris.application.model.designers.PositionPiece;
+import fr.iut.dut2.tetris.application.model.designers.Coordonates;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
 
@@ -47,9 +45,10 @@ public class GrilleWindowActivity extends AppCompatActivity {
 //        Grille maGrille = new Grille(this); //FAUX - sinon instancie 2 grilles car il y en a déjà une instanciée à partir de la vue .XML
         Grille maGrille = findViewById(R.id.Grille);
         maGrille.dessinerGrille(p);
-        List<PositionPiece> liste = new ArrayList<>();
+        /*
+        List<Coordonates> liste = new ArrayList<>();
         for (int i = 1; i < p.getNbColonnes(); i++) {
-            liste.add(new PositionPiece(2, i));
+            liste.add(new Coordonates(2, i));
         }
 
         liste.remove(4);
@@ -57,7 +56,7 @@ public class GrilleWindowActivity extends AppCompatActivity {
         liste.remove(6);
 
         maGrille.dessinerPiece(1, liste);
-
+*/
         SensorManager manager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         SensorEventListener listener = new SensorEventListener() {
