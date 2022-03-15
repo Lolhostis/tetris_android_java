@@ -23,8 +23,9 @@ public class Grille extends View implements Designer {
     private int tailleCase;
     private int nbLignes;
     private int nbColonnes;
-    private List<Coordonates> listePosPiece;
-    private int color;
+
+    private int largeurCase;
+    private int hauteurCase;
 
     public Grille(Context context) {
         super(context);
@@ -59,9 +60,16 @@ public class Grille extends View implements Designer {
         partie = p;
         nbLignes = partie.getNbLignes();
         nbColonnes = partie.getNbColonnes();
-        listePosPiece = new ArrayList<>();
         tailleCase = 0;
-        //System.out.println();
+        requestLayout();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        largeurCase = getMeasuredWidth()/nbColonnes;
+        hauteurCase = getMeasuredHeight()/nbLignes;
     }
 
     //Dessine la grille de jeu (partie.grille)
@@ -69,58 +77,34 @@ public class Grille extends View implements Designer {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        //largeur de l'écran
-        int width = getMeasuredWidth();
-        //hauteur du l'écran
-        int height = getMeasuredHeight();
-
-        int largeurCase;
-        int hauteurCase;
-
-        //On prend en référence le plus petit, donc ici la largeur
-        //largeur du canvas
-        // int width = canvas.getWidth();
-        //hauteur du canvas
-        //  int height = getHeight();
-        mPaint.setColor(Color.BLACK);
-
         if(nbLignes <= 0 || nbColonnes <= 0) return;
-
-        largeurCase = width/nbLignes;
-        hauteurCase = height/nbColonnes;
-
-        //pour faire des carrés :
-        /*
-        if(width<height){
-            tailleCase = width/nbLignes;
-        }else{
-            tailleCase = height/nbColonnes;
-        }
-         */
 
         int typePiece;
 
         //Dessiner la grille
-        for (int x = 0; x < nbLignes; x += 1) {
-            for (int y = 0; y < nbColonnes; y += 1) {
+        for (int y = 0; y < nbLignes; y += 1) {
+            for (int x = 0; x < nbColonnes; x += 1) {
+                //Dessiner les pieces
+                typePiece = partie.getGrille().grille[y][x];
+               // mPaint.setColor(paintColor(typePiece));
+                changePaintColor(typePiece);
+                canvas.drawRect(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase + hauteurCase, mPaint);
+
                 //Dessiner la grille
                 //lignes
+                mPaint.setColor(Color.WHITE);
                 canvas.drawLine(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase, mPaint);
 
                 //colones
                 canvas.drawLine(x * largeurCase, y * hauteurCase, x * largeurCase, y * hauteurCase + hauteurCase, mPaint);
-
-                //Dessiner les pieces
-
-                typePiece = partie.getGrille().grille[x][y];
-                paintColor(typePiece);
-            //    mPaint.setColor(color);
-                canvas.drawRect(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase + hauteurCase, mPaint);
             }
         }
+
+     //   canvas.drawRect(5 * largeurCase, 10 * hauteurCase, 5 * largeurCase + largeurCase, 10 * hauteurCase + hauteurCase, mPaint);
     }
 
-    public void paintColor(int p) {
+    public void changePaintColor(int p) {
+        int color;
         //pour chaque type p (représenté par un chiffre), on fait correspondre une couleur
         switch (p){
             case 0:
@@ -152,8 +136,8 @@ public class Grille extends View implements Designer {
                 break;
         };
 
-        mPaint.setColor(p);
+        mPaint.setColor(color);
         invalidate();
-        //  requestLayout();
+        // requestLayout();
     }
 }

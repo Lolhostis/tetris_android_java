@@ -6,14 +6,22 @@
         <entry key="../../../../../../../../layout/custom_preview.xml" value="0.3625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24166666666666667" />
-        <entry key="app/src/main/res/layout-land/grille_window.xml" value="0.19091710758377425" />
+        <entry key="app/src/main/res/layout-land/grille_window.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-land/leaderboard_window.xml" value="0.28350970017636684" />
+        <entry key="app/src/main/res/layout-land/main_window.xml" value="0.28350970017636684" />
         <entry key="app/src/main/res/layout-land/options_window.xml" value="0.16710758377425045" />
         <entry key="app/src/main/res/layout-night/grille_window.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout-night/leaderboard_window.xml" value="0.33489583333333334" />
+        <entry key="app/src/main/res/layout-night/main_window.xml" value="0.33489583333333334" />
         <entry key="app/src/main/res/layout-night/options_window.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout-night/pause_window.xml" value="0.33489583333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/confirmation_window.xml" value="0.33" />
         <entry key="app/src/main/res/layout/controls_window.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/layout/game_over_window.xml" value="0.33489583333333334" />
         <entry key="app/src/main/res/layout/grille_window.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/leaderboard_viewholder.xml" value="0.33489583333333334" />
+        <entry key="app/src/main/res/layout/leaderboard_window.xml" value="0.33489583333333334" />
         <entry key="app/src/main/res/layout/main_window.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/options_window.xml" value="0.22552083333333334" />
         <entry key="app/src/main/res/layout/pause_window.xml" value="0.2477355072463768" />

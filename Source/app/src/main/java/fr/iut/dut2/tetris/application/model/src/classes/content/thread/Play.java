@@ -39,10 +39,10 @@ public class Play extends Grille implements Runnable {
 
                         if (i - Math.sqrt(cpt) < 100)
                             //noinspection BusyWait
-                            CustomThread.sleep(100);
+                            Thread.sleep(100);
                         else
                             //noinspection BusyWait
-                            CustomThread.sleep((long) ((long) i - (Math.sqrt(cpt) * 20)));
+                            Thread.sleep((long) ((long) i - (Math.sqrt(cpt) * 20)));
                         cpt++;
                         Log.d("ThreadCounter",i - (Math.sqrt(cpt) * 20) + "");
 
