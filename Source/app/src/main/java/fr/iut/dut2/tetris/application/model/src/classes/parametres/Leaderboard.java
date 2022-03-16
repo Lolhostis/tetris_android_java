@@ -9,10 +9,13 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
+import android.net.Uri;
+
 public class Leaderboard implements Serializable {
     private List<Integer> scores = new LinkedList<>();
 
     public Leaderboard() {
+        //chargerFichier();
     }
 
     public List<Integer> getScores() {

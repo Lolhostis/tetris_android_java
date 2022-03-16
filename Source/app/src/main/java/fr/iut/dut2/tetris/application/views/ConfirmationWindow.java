@@ -1,6 +1,5 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 

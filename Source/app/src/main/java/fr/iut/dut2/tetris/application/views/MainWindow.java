@@ -1,13 +1,7 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,16 +15,18 @@ public class MainWindow extends AppCompatActivity {
     private Partie p;
     private MainController controller;
 
-    // private boolean stop = true;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main_window);
+        if(getIntent().getParcelableExtra("Partie") != null){
+            p = getIntent().getParcelableExtra("Partie");
+        }
         if(p == null){
             p = new Partie(24,12);
         }
+        //p.getLeaderboard().chargerFichier();
         controller = new MainController(this, p);
     }
 
@@ -60,15 +56,15 @@ public class MainWindow extends AppCompatActivity {
     }
 
     public void MenuToOptions(View view) {
-        controller.MenuToOptions(view);
+        controller.MenuToOptions();
     }
 
     public void MenuToLeaderboard(View view) {
-        controller.MenuToLeaderboard(view);
+        controller.MenuToLeaderboard();
     }
 
     public void MenuToGrille(View view){
-        controller.MenuToGrille(view);
+        controller.MenuToGrille();
     }
 
     @Override

@@ -12,15 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.iut.dut2.tetris.R;
 import fr.iut.dut2.tetris.application.controlleurs.GrilleController;
+import fr.iut.dut2.tetris.application.controlleurs.ScoreUpdater;
 import fr.iut.dut2.tetris.application.model.designers.Grille;
-import fr.iut.dut2.tetris.application.model.designers.Coordonates;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
+import fr.iut.dut2.tetris.application.model.src.classes.content.observateurs.ObservateurGrille;
+import fr.iut.dut2.tetris.application.model.src.classes.content.observateurs.ObservateurScore;
 
 public class GrilleWindowActivity extends AppCompatActivity {
 
@@ -30,6 +29,7 @@ public class GrilleWindowActivity extends AppCompatActivity {
 
     private TextView textView_score;
     private long elapsed_time = System.nanoTime();
+    private ScoreUpdater scoreUpdater;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,25 +38,32 @@ public class GrilleWindowActivity extends AppCompatActivity {
         setContentView(R.layout.grille_window);
 
         p = getIntent().getParcelableExtra("Partie");
-        thread = new Thread(p.getGrille());
-        Log.d("ThreadGrille", "Thread created (" + getClass().getSimpleName() + ")");
+
+        scoreUpdater = new ScoreUpdater(this);
+        ObservateurScore obsScore = new ObservateurScore(this,p);
+        ObservateurGrille obsGrille = new ObservateurGrille(p);
+        Grille maGrille = findViewById(R.id.Grille);
         controller = new GrilleController(this, p);
 
-//        Grille maGrille = new Grille(this); //FAUX - sinon instancie 2 grilles car il y en a déjà une instanciée à partir de la vue .XML
-        Grille maGrille = findViewById(R.id.Grille);
-        maGrille.dessinerGrille(p);
-        /*
-        List<Coordonates> liste = new ArrayList<>();
-        for (int i = 1; i < p.getNbColonnes(); i++) {
-            liste.add(new Coordonates(2, i));
+        p.attach(obsScore);
+        p.attach(obsGrille);
+
+        obsGrille.setLooker(maGrille);
+
+        if(!p.getGrille().running){
+            thread = new Thread(p.getGrille());
         }
 
-        liste.remove(4);
-        liste.remove(4);
-        liste.remove(6);
+        TextView textView = findViewById(R.id.BestScore);
+        if(p.getLeaderboard().getScores().size() == 0){
+            scoreUpdater.bindScore(textView,0);
+        }
+        else{
+            scoreUpdater.bindScore(textView,p.getLeaderboard().getScores().get(0));
+        }
 
-        maGrille.dessinerPiece(1, liste);
-*/
+        maGrille.dessinerGrille(p);
+
         SensorManager manager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = manager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         SensorEventListener listener = new SensorEventListener() {
@@ -69,7 +76,7 @@ public class GrilleWindowActivity extends AppCompatActivity {
                 long waitTime = (long) (2  * Math.pow(10,8));
 
                 if(sensorEvent.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION){
-                    int sensitivity = 5;
+                    int sensitivity = 8;
 
 
 
@@ -119,8 +126,7 @@ public class GrilleWindowActivity extends AppCompatActivity {
         Sensor sensorRot = manager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         manager.registerListener(listener,sensorRot, 10);
 
-
-
+        textView_score = findViewById(R.id.Score);
 
         // Designer designer = new Designer();
         //   designer.chargerGrille(new Partie(x,y));
@@ -129,25 +135,16 @@ public class GrilleWindowActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("ThreadGrille","Running : " + p.getGrille().running);
         if (!p.getGrille().running) {
             p.getGrille().running = true;
             p.getGrille().paused = false;
-            Log.d("ThreadGrille", "Thread has normally stopped, restarting... (" + getClass().getSimpleName() + ")");
             thread.start();
-
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        Log.d("ThreadGrille", "Stopping thread due to app stop signal (" + getClass().getSimpleName() + ")");
-        /*thread.interrupt();
-
-        p.getGrille().paused = false;
-        thread = new Thread(p.getGrille());*/
     }
 
     @Override
@@ -158,7 +155,6 @@ public class GrilleWindowActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("ThreadGrille", "Pausing thread due to app pause signal (" + getClass().getSimpleName() + ")");
         if (!p.getGrille().paused) {
             p.getGrille().paused = true;
         }
@@ -173,10 +169,13 @@ public class GrilleWindowActivity extends AppCompatActivity {
             p.getGrille().paused = false;
         }
 
-        Log.d("ThreadGrille", "Continuing thread due to app resume signal (" + getClass().getSimpleName() + ")");
     }
 
     public void GrilleToPause(View view) {
         controller.GrilleToPause();
+    }
+
+    public void bindScore(int points) {
+        scoreUpdater.bindScore(textView_score, points);
     }
 }

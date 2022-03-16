@@ -2,7 +2,6 @@ package fr.iut.dut2.tetris.application.controlleurs;
 
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -48,21 +47,21 @@ public class MainController {
                 });
     }
 
-    public void MenuToOptions(View view) {
+    public void MenuToOptions() {
         Intent MenuOptions = new Intent(context, OptionsWindow.class);
         MenuOptions.putExtra("Partie", p);
 
         mStartForResult.launch(MenuOptions);
     }
 
-    public void MenuToLeaderboard(View view){
+    public void MenuToLeaderboard(){
         Intent MenuLeaderboard = new Intent(context, LeaderboardWindow.class);
         MenuLeaderboard.putExtra("Partie", p);
 
         mStartForResult.launch(MenuLeaderboard);
     }
 
-    public void MenuToGrille(View view){
+    public void MenuToGrille(){
         Intent MenuGrille = new Intent(context, GrilleWindowActivity.class);
         MenuGrille.putExtra("Partie", p);
 

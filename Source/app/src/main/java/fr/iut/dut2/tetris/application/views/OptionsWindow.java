@@ -1,6 +1,6 @@
 package fr.iut.dut2.tetris.application.views;
 
-import android.os.Bundle;;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -27,9 +27,10 @@ public class OptionsWindow extends AppCompatActivity {
         p = getIntent().getParcelableExtra("Partie");
         controllerTemplate = new OptLeadController(this, p);
         controller = new OptionsController(p);
-        SeekBar bar = findViewById(R.id.seekBar2);
+        SeekBar bar = findViewById(R.id.BarDifficulte);
         bar.setKeyProgressIncrement(1);
         bar.setMax(3);
+        bar.setProgress(p.getDifficulte().getDifficulte());
 
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -58,6 +59,6 @@ public class OptionsWindow extends AppCompatActivity {
     }
 
     public void OptionsToMenu(View view) {
-        controllerTemplate.RetourAuMenu(view);
+        controllerTemplate.RetourAuMenu();
     }
 }

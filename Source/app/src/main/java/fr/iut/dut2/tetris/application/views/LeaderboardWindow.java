@@ -34,6 +34,6 @@ public class LeaderboardWindow extends AppCompatActivity {
     }
 
     public void LeaderBoardToMenu(View view) {
-        controller.RetourAuMenu(view);
+        controller.RetourAuMenu();
     }
 }

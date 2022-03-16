@@ -194,10 +194,6 @@ public class Partie implements Parcelable, Notifiyer {
         parcel.writeInt(nbLignes);
         parcel.writeInt(points);
 
-        leaderboard.addScore(800);
-        leaderboard.addScore(500);
-        leaderboard.addScore(1500);
-
         int cpt = 0;
         while(cpt < leaderboard.getScores().size()){
             parcel.writeInt(leaderboard.getScores().get(cpt));

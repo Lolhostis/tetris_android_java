@@ -1,10 +1,15 @@
 package fr.iut.dut2.tetris.application.model.src.classes.content.observateurs;
 
 
+import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 import fr.iut.dut2.tetris.application.model.src.classes.content.grille.Grille;
 
 public class ObservateurGrille extends ObservateurAbstrait {
     private Grille value;
+
+    public ObservateurGrille(Partie p) {
+        this.sujet = p;
+    }
 
     @Override
     public void update() {
