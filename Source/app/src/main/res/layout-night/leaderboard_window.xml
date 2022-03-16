@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:onClick="LeaderboardToMenu"
+        android:onClick="LeaderBoardToMenu"
         android:text="@string/BackToMenuButtonText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
