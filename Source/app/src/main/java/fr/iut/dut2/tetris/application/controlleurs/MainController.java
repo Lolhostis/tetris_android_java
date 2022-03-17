@@ -31,13 +31,10 @@ public class MainController {
                     if(result.getResultCode() == OPTIONS_RESULT_CODE){
                         Intent intent = result.getData();
                         if(intent != null){
-                            Log.d("PartieTimeLine", "Got result from Options");
                             p = intent.getParcelableExtra("Partie");
-                            Log.d("ParcelPartie",  "Difficulté reçue : " + p.getDifficulte().getDifficulte());
                         }
                     }
                     else if(result.getResultCode() == LEADERBOARD_RESULT_CODE){
-                        Log.d("PartieTimeLine", "Got result from Leaderboard");
                         Intent intent = result.getData();
                         if(intent != null){
                             p = intent.getParcelableExtra("Partie");

@@ -1,6 +1,7 @@
 package fr.iut.dut2.tetris.application.model.designers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
+import fr.iut.dut2.tetris.application.views.GameOverWindow;
+import fr.iut.dut2.tetris.application.views.GrilleWindowActivity;
 
 public class Grille extends View implements Designer {
     private Paint mPaint;
@@ -129,6 +132,16 @@ public class Grille extends View implements Designer {
 
             case 5:
                 color = Color.BLUE;
+                break;
+
+
+            // J'ai rajouté ces deux cases (c'est pour ça que les pièces ne s'affichaient pas
+            case 6:
+                color = Color.CYAN;
+                break;
+
+            case 7:
+                color = Color.rgb(255,0,128);
                 break;
 
             default:

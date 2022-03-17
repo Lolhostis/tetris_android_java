@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".application.views.ConfirmationWindow">
         </activity>
+        <activity android:name=".application.views.GameOverWindow">
+        </activity>
     </application>
 
 </manifest>

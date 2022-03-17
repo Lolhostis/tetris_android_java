@@ -13,8 +13,4 @@ public abstract class ObservateurAbstrait {
     public void setLooker(Grille looker) {
         this.looker = looker;
     }
-
-    public void setSujet(Partie sujet) {
-        this.sujet = sujet;
-    }
 }

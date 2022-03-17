@@ -1,56 +1,53 @@
 package fr.iut.dut2.tetris.application.controlleurs;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
-import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
-import fr.iut.dut2.tetris.application.views.GameOverWindow;
-import fr.iut.dut2.tetris.application.views.PauseWindow;
+import fr.iut.dut2.tetris.application.views.GrilleWindowActivity;
+import fr.iut.dut2.tetris.application.views.MainWindow;
 
-public class GrilleController {
-
+public class GameOverController {
     private final AppCompatActivity context;
     private Partie p;
 
     private final ActivityResultLauncher<Intent> mStartForResult;
 
-    public GrilleController(AppCompatActivity context, Partie p){
+    public GameOverController(AppCompatActivity context){
         this.context = context;
-        this.p = p;
 
         mStartForResult = context.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     Intent intent = result.getData();
 
                     assert intent != null;
-                    this.p = intent.getParcelableExtra("Partie");
+                    p = intent.getParcelableExtra("Partie");
                 });
     }
 
-    public void MovementApplier(MovePiece move){
-        p.getGrille().movePiece(move);
-    }
-
-    public void GrilleToPause() {
-        Intent intent = new Intent(context, PauseWindow.class);
-        intent.putExtra("Partie",p);
-
-        context.startActivity(intent);
-    }
-
-    public void GameOver() {
-        p.getGrille().running = false;
-        Intent intent = new Intent(context, GameOverWindow.class);
+    public void GameOverToGrille(){
+        Intent intent = new Intent(context.getApplicationContext(), GrilleWindowActivity.class);
 
         intent.putExtra("Partie",p);
+        context.setResult(12, intent);
 
-        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.finish();
+    }
+
+    public void GameOverToMenu(){
+        Intent intent = new Intent(context.getApplicationContext(), MainWindow.class);
+
+        intent.putExtra("Partie",p);
+        context.setResult(12, intent);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mStartForResult.launch(intent);
     }
 }

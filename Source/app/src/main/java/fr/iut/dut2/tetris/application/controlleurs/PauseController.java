@@ -19,7 +19,6 @@ public class PauseController {
 
 
     public void PauseToGrille(){
-        Log.d("Grille", "Grille unpaused");
         p.getGrille().paused = false;
         context.finish();
     }

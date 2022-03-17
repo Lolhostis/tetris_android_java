@@ -27,7 +27,7 @@ public class Play extends Grille implements Runnable {
 
     @Override
     public void run() {
-        float i = 750;
+        float i = 75;
         int cpt = 1;
         addNewPiece();
         update();
@@ -48,7 +48,7 @@ public class Play extends Grille implements Runnable {
 
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
-                        Log.d("ThreadGrille", "Thread stopped running due to an interruption");
+                        running = false;
                         return;
                     }
                     movePiece(MovePiece.DESCENDRE);
@@ -63,10 +63,7 @@ public class Play extends Grille implements Runnable {
             update();
         }
         if (!running) {
-            Log.d("ThreadGrille", "Thread stopped running due to running ended signal");
-            System.out.println("Arret");
             Thread.currentThread().interrupt();
-            System.out.println("Thread \"" + Thread.currentThread().getName() + "\" is interrupted");
             return;
         }
         gameOver();

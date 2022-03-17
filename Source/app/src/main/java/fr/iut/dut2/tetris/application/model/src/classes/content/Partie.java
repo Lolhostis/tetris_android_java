@@ -219,9 +219,12 @@ public class Partie implements Parcelable, Notifiyer {
         observateurs.remove(observateur);
     }
 
-    /*public void GameOver() {
-        for (ObservateurAbstrait obs : observateurs) {
-            ((ObservateurGrille) obs).gameOver();
+    public void GameOver() {
+        for(ObservateurAbstrait obs : observateurs){
+            if(obs instanceof ObservateurGrille){
+                ((ObservateurGrille) obs).gameOver();
+                break;
+            }
         }
-    }*/
+    }
 }

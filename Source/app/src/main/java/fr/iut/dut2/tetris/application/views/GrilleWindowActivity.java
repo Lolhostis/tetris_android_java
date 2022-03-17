@@ -40,8 +40,13 @@ public class GrilleWindowActivity extends AppCompatActivity {
         p = getIntent().getParcelableExtra("Partie");
 
         scoreUpdater = new ScoreUpdater(this);
+
         ObservateurScore obsScore = new ObservateurScore(this,p);
-        ObservateurGrille obsGrille = new ObservateurGrille(p);
+        ObservateurGrille obsGrille = new ObservateurGrille(p,this);
+
+        p.detach(obsScore);
+        p.detach(obsGrille);
+
         Grille maGrille = findViewById(R.id.Grille);
         controller = new GrilleController(this, p);
 
@@ -177,5 +182,9 @@ public class GrilleWindowActivity extends AppCompatActivity {
 
     public void bindScore(int points) {
         scoreUpdater.bindScore(textView_score, points);
+    }
+
+    public void GameOver() {
+        controller.GameOver();
     }
 }

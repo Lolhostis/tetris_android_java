@@ -34,7 +34,8 @@
             android:text="@string/PlayAgainText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/Game_Over_Retour_Menu"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="GameOverToGrille"/>
 
         <Button
             android:id="@+id/Game_Over_Retour_Menu"
@@ -45,7 +46,8 @@
             android:text="@string/BackToMenuButtonText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Game_Over_Rejouer"
-            app:layout_constraintTop_toTopOf="@+id/Game_Over_Rejouer" />
+            app:layout_constraintTop_toTopOf="@+id/Game_Over_Rejouer"
+            android:onClick="GameOverToMenu"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
