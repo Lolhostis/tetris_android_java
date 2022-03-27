@@ -15,7 +15,7 @@ import fr.iut.dut2.tetris.application.model.src.classes.content.pieces.PieceT;
 import java.util.Random;
 
 /**
- * Record ayant la responsabilité des controles concernant les pièces dans la grille.
+ * Classe ayant la responsabilité des controles concernant les pièces dans la grille.
  */
 public class ControlesPiece{
 

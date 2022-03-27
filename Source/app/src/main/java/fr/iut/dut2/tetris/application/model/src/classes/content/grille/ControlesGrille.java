@@ -6,7 +6,7 @@ import android.util.Log;
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 
 /**
- * Record ayant la responsabilité des contrôles concernant la grille.
+ * Classe ayant la responsabilité des contrôles concernant la grille.
  */
 public class ControlesGrille{
 
