@@ -1,7 +1,6 @@
 package fr.iut.dut2.tetris.application.controlleurs;
 
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -22,25 +21,16 @@ public class MainController {
 
     private final ActivityResultLauncher<Intent> mStartForResult;
 
-    public MainController(AppCompatActivity context, Partie partie){
+    public MainController(AppCompatActivity context, Partie partie) {
         this.context = context;
         p = partie;
 
         mStartForResult = context.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if(result.getResultCode() == OPTIONS_RESULT_CODE){
-                        Intent intent = result.getData();
-                        if(intent != null){
-                            p = intent.getParcelableExtra("Partie");
-                        }
+                    Intent intent = result.getData();
+                    if(intent != null){
+                        p = intent.getParcelableExtra("Partie");
                     }
-                    else if(result.getResultCode() == LEADERBOARD_RESULT_CODE){
-                        Intent intent = result.getData();
-                        if(intent != null){
-                            p = intent.getParcelableExtra("Partie");
-                        }
-                    }
-
                 });
     }
 
@@ -51,14 +41,14 @@ public class MainController {
         mStartForResult.launch(MenuOptions);
     }
 
-    public void MenuToLeaderboard(){
+    public void MenuToLeaderboard() {
         Intent MenuLeaderboard = new Intent(context, LeaderboardWindow.class);
         MenuLeaderboard.putExtra("Partie", p);
 
         mStartForResult.launch(MenuLeaderboard);
     }
 
-    public void MenuToGrille(){
+    public void MenuToGrille() {
         Intent MenuGrille = new Intent(context, GrilleWindowActivity.class);
         MenuGrille.putExtra("Partie", p);
 

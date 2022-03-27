@@ -24,24 +24,33 @@ public class TourneurLGauche {
                 pts[2].x++;
                 pts[2].y--;
                 pts[3].x += 2;
+                break;
+
             case ANGLE_90 :
                 pts[0].x--;
                 pts[0].y--;
                 pts[2].x++;
                 pts[2].y++;
                 pts[3].y += 2;
+                break;
+
+
             case ANGLE_180 :
                 pts[0].x++;
                 pts[0].y--;
                 pts[2].x--;
                 pts[2].y++;
                 pts[3].x -= 2;
+                break;
+
             case ANGLE_270 :
                 pts[0].x++;
                 pts[0].y++;
                 pts[2].x--;
                 pts[2].y--;
                 pts[3].y -= 2;
+                break;
+
         }
     }
 
@@ -59,24 +68,32 @@ public class TourneurLGauche {
                 pts[2].x--;
                 pts[2].y--;
                 pts[3].y -= 2;
+                break;
+
             case ANGLE_90 :
                 pts[0].x--;
                 pts[0].y++;
                 pts[2].x++;
                 pts[2].y--;
                 pts[3].x += 2;
+                break;
+
             case ANGLE_180 :
                 pts[0].x--;
                 pts[0].y--;
                 pts[2].x++;
                 pts[2].y++;
                 pts[3].y += 2;
+                break;
+
             case ANGLE_270 :
                 pts[0].x++;
                 pts[0].y--;
                 pts[2].x--;
                 pts[2].y++;
                 pts[3].x -= 2;
+                break;
+
         }
     }
 }

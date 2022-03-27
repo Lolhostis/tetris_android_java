@@ -1,8 +1,6 @@
 package fr.iut.dut2.tetris.application.controlleurs;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -34,7 +32,9 @@ public class GrilleController {
     }
 
     public void MovementApplier(MovePiece move){
-        p.getGrille().movePiece(move);
+        if(p.getGrille().running){
+            p.getGrille().movePiece(move);
+        }
     }
 
     public void GrilleToPause() {
@@ -45,6 +45,7 @@ public class GrilleController {
     }
 
     public void GameOver() {
+
         p.getGrille().running = false;
         Intent intent = new Intent(context, GameOverWindow.class);
 

@@ -1,24 +1,19 @@
 package fr.iut.dut2.tetris.application.model.designers;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
-import fr.iut.dut2.tetris.application.views.GameOverWindow;
-import fr.iut.dut2.tetris.application.views.GrilleWindowActivity;
 
 public class Grille extends View implements Designer {
     private Paint mPaint;
@@ -71,8 +66,7 @@ public class Grille extends View implements Designer {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        largeurCase = getMeasuredWidth()/nbColonnes;
-        hauteurCase = getMeasuredHeight()/nbLignes;
+        largeurCase = hauteurCase = getMeasuredWidth() /(nbColonnes - 2);
     }
 
     //Dessine la grille de jeu (partie.grille)
@@ -84,22 +78,27 @@ public class Grille extends View implements Designer {
 
         int typePiece;
 
+        int tailleGrille = nbLignes * hauteurCase;
+
+        int diff = getMeasuredHeight() - tailleGrille;
+        Log.d("Taille",diff + "");
+
         //Dessiner la grille
-        for (int y = 0; y < nbLignes; y += 1) {
-            for (int x = 0; x < nbColonnes; x += 1) {
+        for (int y = 0; y < nbLignes-1; y += 1) {
+            for (int x = 1; x < nbColonnes-1; x += 1) {
                 //Dessiner les pieces
                 typePiece = partie.getGrille().grille[y][x];
                // mPaint.setColor(paintColor(typePiece));
                 changePaintColor(typePiece);
-                canvas.drawRect(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase + hauteurCase, mPaint);
+                canvas.drawRect((x * largeurCase) - largeurCase, y * hauteurCase + diff / 2.0f, x * largeurCase , (y * hauteurCase + hauteurCase) + diff / 2.0f, mPaint);
 
                 //Dessiner la grille
                 //lignes
                 mPaint.setColor(Color.WHITE);
-                canvas.drawLine(x * largeurCase, y * hauteurCase, x * largeurCase + largeurCase, y * hauteurCase, mPaint);
+                canvas.drawLine((x * largeurCase) - largeurCase, y * hauteurCase + diff / 2.0f, x * largeurCase + largeurCase, y * hauteurCase + diff / 2.0f, mPaint);
 
                 //colones
-                canvas.drawLine(x * largeurCase, y * hauteurCase, x * largeurCase, y * hauteurCase + hauteurCase, mPaint);
+                canvas.drawLine(x * largeurCase, y * hauteurCase + diff / 2.0f, x * largeurCase, y * hauteurCase + hauteurCase + diff / 2.0f, mPaint);
             }
         }
 
@@ -134,8 +133,6 @@ public class Grille extends View implements Designer {
                 color = Color.BLUE;
                 break;
 
-
-            // J'ai rajouté ces deux cases (c'est pour ça que les pièces ne s'affichaient pas
             case 6:
                 color = Color.CYAN;
                 break;
@@ -147,7 +144,7 @@ public class Grille extends View implements Designer {
             default:
                 color = Color.DKGRAY;
                 break;
-        };
+        }
 
         mPaint.setColor(color);
         invalidate();

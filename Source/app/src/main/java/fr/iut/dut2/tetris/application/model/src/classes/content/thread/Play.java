@@ -30,6 +30,7 @@ public class Play extends Grille implements Runnable {
         float i = 75;
         int cpt = 1;
         addNewPiece();
+        running = true;
         update();
 
         while (currentPiece.canGoBas() && running) {
@@ -44,10 +45,13 @@ public class Play extends Grille implements Runnable {
                             //noinspection BusyWait
                             Thread.sleep((long) ((long) i - (Math.sqrt(cpt) * 20)));
                         cpt++;
-                        Log.d("ThreadCounter",i - (Math.sqrt(cpt) * 20) + "");
 
                     } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
+                        try {
+                            Thread.currentThread().join();
+                        } catch (InterruptedException interruptedException) {
+                            interruptedException.printStackTrace();
+                        }
                         running = false;
                         return;
                     }
@@ -62,15 +66,7 @@ public class Play extends Grille implements Runnable {
             addNewPiece();
             update();
         }
-        if (!running) {
-            Thread.currentThread().interrupt();
-            return;
-        }
+        clearGrille();
         gameOver();
-        try {
-            Thread.currentThread().join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -22,5 +22,6 @@ public class OptionsController {
         }
 
         partie.getDifficulte().setDifficulte(i);
+        partie.setNbLignes(25 - (i * 5));
     }
 }

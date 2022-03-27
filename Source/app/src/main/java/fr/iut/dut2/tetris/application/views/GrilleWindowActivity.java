@@ -55,10 +55,6 @@ public class GrilleWindowActivity extends AppCompatActivity {
 
         obsGrille.setLooker(maGrille);
 
-        if(!p.getGrille().running){
-            thread = new Thread(p.getGrille());
-        }
-
         TextView textView = findViewById(R.id.BestScore);
         if(p.getLeaderboard().getScores().size() == 0){
             scoreUpdater.bindScore(textView,0);
@@ -140,8 +136,9 @@ public class GrilleWindowActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        p = getIntent().getParcelableExtra("Partie");
         if (!p.getGrille().running) {
-            p.getGrille().running = true;
+            thread = new Thread(p.getGrille());
             p.getGrille().paused = false;
             thread.start();
         }

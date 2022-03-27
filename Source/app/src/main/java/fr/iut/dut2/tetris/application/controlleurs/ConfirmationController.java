@@ -22,6 +22,8 @@ public class ConfirmationController {
 
         p.getGrille().running = false;
 
+
+
         //Pour fermer toutes les fenetres
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

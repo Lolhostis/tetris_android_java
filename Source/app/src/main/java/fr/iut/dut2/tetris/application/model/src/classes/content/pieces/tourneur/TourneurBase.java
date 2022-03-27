@@ -18,13 +18,13 @@ public class TourneurBase {
      */
     public void tournerGauche(PointBase[] points, PieceType type, EtatRotation rotation) {
         switch (type) {
-            case CARRE : new TourneurCarre().tournerGauche();
-            case I : new TourneurI().tournerGauche(points, rotation);
-            case L_DROITE : new TourneurLDroite().tournerGauche(points, rotation);
-            case L_GAUCHE : new TourneurLGauche().tournerGauche(points, rotation);
-            case S_DROITE : new TourneurSDroite().tournerGauche(points, rotation);
-            case S_GAUCHE : new TourneurSGauche().tournerGauche(points, rotation);
-            case T : new TourneurT().tournerGauche(points, rotation);
+            case CARRE : new TourneurCarre().tournerGauche(); break;
+            case I : new TourneurI().tournerGauche(points, rotation); break;
+            case L_DROITE : new TourneurLDroite().tournerGauche(points, rotation); break;
+            case L_GAUCHE : new TourneurLGauche().tournerGauche(points, rotation); break;
+            case S_DROITE : new TourneurSDroite().tournerGauche(points, rotation); break;
+            case S_GAUCHE : new TourneurSGauche().tournerGauche(points, rotation); break;
+            case T : new TourneurT().tournerGauche(points, rotation); break;
         }
     }
 
@@ -37,13 +37,13 @@ public class TourneurBase {
      */
     public void tournerDroite(PointBase[] points, PieceType type, EtatRotation rotation) {
         switch (type) {
-            case CARRE : new TourneurCarre().tournerDroite();
-            case I : new TourneurI().tournerDroite(points, rotation);
-            case L_DROITE : new TourneurLDroite().tournerDroite(points, rotation);
-            case L_GAUCHE : new TourneurLGauche().tournerDroite(points, rotation);
-            case S_DROITE : new TourneurSDroite().tournerDroite(points, rotation);
-            case S_GAUCHE : new TourneurSGauche().tournerDroite(points, rotation);
-            case T : new TourneurT().tournerDroite(points, rotation);
+            case CARRE : new TourneurCarre().tournerDroite(); break;
+            case I : new TourneurI().tournerDroite(points, rotation); break;
+            case L_DROITE : new TourneurLDroite().tournerDroite(points, rotation); break;
+            case L_GAUCHE : new TourneurLGauche().tournerDroite(points, rotation); break;
+            case S_DROITE : new TourneurSDroite().tournerDroite(points, rotation); break;
+            case S_GAUCHE : new TourneurSGauche().tournerDroite(points, rotation); break;
+            case T : new TourneurT().tournerDroite(points, rotation); break;
         }
     }
 }

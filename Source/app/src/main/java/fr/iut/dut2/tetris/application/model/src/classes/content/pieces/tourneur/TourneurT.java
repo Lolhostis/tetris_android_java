@@ -23,21 +23,29 @@ public class TourneurT {
                 pts[0].y++;
                 pts[2].y += 2;
                 pts[3].x -= 2;
+                break;
+
             case ANGLE_90 :
                 pts[0].x--;
                 pts[0].y--;
                 pts[2].x -= 2;
                 pts[3].y -= 2;
+                break;
+
             case ANGLE_180:
                 pts[0].x++;
                 pts[0].y--;
                 pts[2].y -= 2;
                 pts[3].x += 2;
+                break;
+
             case ANGLE_270 :
                 pts[0].x++;
                 pts[0].y++;
                 pts[2].x += 2;
                 pts[3].y += 2;
+                break;
+
         }
     }
 
@@ -54,21 +62,29 @@ public class TourneurT {
                 pts[0].y++;
                 pts[2].x += 2;
                 pts[3].y += 2;
+                break;
+
             case ANGLE_90 :
                 pts[0].x--;
                 pts[0].y++;
                 pts[2].y += 2;
                 pts[3].x -= 2;
+                break;
+
             case ANGLE_180:
                 pts[0].x--;
                 pts[0].y--;
                 pts[2].x -= 2;
                 pts[3].y -= 2;
+                break;
+
             case ANGLE_270 :
                 pts[0].x++;
                 pts[0].y--;
                 pts[2].y -= 2;
                 pts[3].x += 2;
+                break;
+
         }
     }
 }

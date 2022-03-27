@@ -64,7 +64,7 @@ public class Partie implements Parcelable, Notifiyer {
         }
         String message = "Leaderboard : ";
         int cpt = 0;
-        /*for(Integer i : leaderboard.getScores()){
+        for(Integer i : leaderboard.getScores()){
             if(cpt == leaderboard.getScores().size() - 1 ){
                 message += i;
             }
@@ -72,9 +72,9 @@ public class Partie implements Parcelable, Notifiyer {
                 message += i + " | ";
             }
             cpt++;
-        }*/
+        }
 
-        //Log.d("ParcelPartie", message);
+        Log.d("ParcelPartie", message);
 
         controles = new Controles();
         difficulte = new Difficulte();

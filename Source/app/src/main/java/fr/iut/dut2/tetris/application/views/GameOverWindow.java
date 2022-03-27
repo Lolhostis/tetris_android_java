@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.dut2.tetris.R;
 import fr.iut.dut2.tetris.application.controlleurs.GameOverController;
+import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 
 public class GameOverWindow extends AppCompatActivity {
     private GameOverController controller;
@@ -17,7 +18,9 @@ public class GameOverWindow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over_window);
 
-        controller = new GameOverController(this);
+        Partie p = getIntent().getParcelableExtra("Partie");
+
+        controller = new GameOverController(this, p);
     }
 
     public void GameOverToGrille(View view){

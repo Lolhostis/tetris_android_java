@@ -16,11 +16,13 @@ class TourneurI {
      */
     protected void tournerGauche(PointBase[] pts, EtatRotation rotation) {
         switch (rotation) {
-            case ANGLE_0 : move1(pts);
-            case ANGLE_180 : move1(pts);
+            case ANGLE_0 :
+            case ANGLE_180 :
+                move1(pts); break;
 
-            case ANGLE_90 : move2(pts);
-            case ANGLE_270 : move2(pts);
+            case ANGLE_90 :
+            case ANGLE_270 :
+                move2(pts); break;
         }
     }
 
@@ -35,11 +37,13 @@ class TourneurI {
             //case ANGLE_0, ANGLE_180 -> move1(pts);
             //case ANGLE_90, ANGLE_270 -> move2(pts);
 
-            case ANGLE_0 : move1(pts);
-            case ANGLE_180 : move1(pts);
+            case ANGLE_0 :
+            case ANGLE_180 :
+                move1(pts); break;
 
-            case ANGLE_90 : move2(pts);
-            case ANGLE_270 : move2(pts);
+            case ANGLE_90 :
+            case ANGLE_270 :
+                move2(pts); break;
         }
     }
 
