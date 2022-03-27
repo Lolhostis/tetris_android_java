@@ -77,7 +77,7 @@ public class DeplaceurBase {
      * @param partie   partie possédant les attributs nécessairess
      * @param verifyer permet de faire des vérifications sur une pièce
      */
-    void descendre(PointBase[] points, GrilleBase grille, Partie partie, @NonNull Verifyer verifyer) {
+    public void descendre(PointBase[] points, GrilleBase grille, Partie partie, @NonNull Verifyer verifyer) {
         if (!verifyer.canGoBas(points, grille, partie)) {
             return;
         }
@@ -97,7 +97,7 @@ public class DeplaceurBase {
      * @param grille   grille de jeu
      * @param verifyer permet de faire des vérifications sur une pièce
      */
-    void deplacerGauche(@NonNull PointBase[] points, GrilleBase grille, Verifyer verifyer) {
+    public void deplacerGauche(@NonNull PointBase[] points, GrilleBase grille, Verifyer verifyer) {
         for (PointBase pt : points) {
             if (grille.isBusy(pt.x - 1, pt.y))
                 return;
@@ -117,7 +117,7 @@ public class DeplaceurBase {
      * @param partie   partie possédant les attributs nécessaires
      * @param verifyer permet de faire des vérifications sur une pièce
      */
-    void deplacerDroite(@NonNull PointBase[] points, GrilleBase grille, Partie partie, Verifyer verifyer) {
+    public void deplacerDroite(@NonNull PointBase[] points, GrilleBase grille, Partie partie, Verifyer verifyer) {
         for (PointBase pt : points) {
             if (grille.isBusy(pt.x + 1, pt.y))
                 return;
