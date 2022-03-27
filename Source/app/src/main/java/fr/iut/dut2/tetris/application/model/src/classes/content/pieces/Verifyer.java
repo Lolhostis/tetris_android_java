@@ -17,11 +17,11 @@ public class Verifyer {
         return numPoints;
     }
 
-    public Verifyer(int numPoints){
+    public void setNumPoints(int numPoints) {
         this.numPoints = numPoints;
     }
 
-    public void setNumPoints(int numPoints) {
+    public Verifyer(int numPoints){
         this.numPoints = numPoints;
     }
 
@@ -31,7 +31,7 @@ public class Verifyer {
      * @param mtype mouvement demandé
      * @return booléen disant si le mouvement demandé est valide
      */
-    boolean isValideMove(MovePiece mtype) {
+    public boolean isValideMove(MovePiece mtype) {
         switch (mtype) {
             case DESCENDRE :
             case TOURNER_DROITE :
@@ -52,7 +52,7 @@ public class Verifyer {
      * @param partie partie possédant les attributs nécessaires
      * @return booléen disant si la piece peut aller vers le bas
      */
-    public boolean canGoBas(PointBase[] points, GrilleBase grille, Partie partie) {
+    public public boolean canGoBas(PointBase[] points, GrilleBase grille, Partie partie) {
 
         PointBase[] pts = new PointBase[numPoints];
         for (int i = 0; i < pts.length; i++) {
