@@ -7,9 +7,6 @@ import fr.iut.dut2.tetris.application.model.src.classes.content.enums.MovePiece;
  * Classe représentant une grille, elle hérite de GrilleBase.
  */
 public class Grille extends GrilleBase {
-    protected ControlesPiece ctrlPiece;
-    protected ControlesGrille ctrlGrille;
-
     /**
      * Constructeur d'une Grille.
      *
