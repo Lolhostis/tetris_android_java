@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".application.views.GrilleWindowActivity">
+        <activity android:name=".application.views.GrilleWindowActivity" android:screenOrientation="portrait">
+
         </activity>
         <activity android:name=".application.views.LeaderboardWindow">
         </activity>

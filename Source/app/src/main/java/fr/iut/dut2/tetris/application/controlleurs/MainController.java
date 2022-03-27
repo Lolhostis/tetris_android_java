@@ -4,24 +4,21 @@ import android.content.Intent;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.dut2.tetris.application.model.src.classes.content.Partie;
 import fr.iut.dut2.tetris.application.views.GrilleWindowActivity;
 import fr.iut.dut2.tetris.application.views.LeaderboardWindow;
+import fr.iut.dut2.tetris.application.views.MainWindow;
 import fr.iut.dut2.tetris.application.views.OptionsWindow;
 
 public class MainController {
 
-    private final AppCompatActivity context;
+    private final MainWindow context;
     private Partie p;
-
-    private final int OPTIONS_RESULT_CODE = 10;
-    private final int LEADERBOARD_RESULT_CODE = 11;
 
     private final ActivityResultLauncher<Intent> mStartForResult;
 
-    public MainController(AppCompatActivity context, Partie partie) {
+    public MainController(MainWindow context, Partie partie) {
         this.context = context;
         p = partie;
 
@@ -30,6 +27,7 @@ public class MainController {
                     Intent intent = result.getData();
                     if(intent != null){
                         p = intent.getParcelableExtra("Partie");
+                        this.context.setPartie(p);
                     }
                 });
     }

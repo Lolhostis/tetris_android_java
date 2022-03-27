@@ -1,8 +1,10 @@
 package fr.iut.dut2.tetris.application.views;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,14 +22,21 @@ public class MainWindow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main_window);
-        if(getIntent().getParcelableExtra("Partie") != null){
+
+        if(savedInstanceState != null && savedInstanceState.getParcelable("Partie")!=null){
+            p = savedInstanceState.getParcelable("Partie");
+        }
+        else if(getIntent().getParcelableExtra("Partie") != null){
             p = getIntent().getParcelableExtra("Partie");
         }
         if(p == null){
             p = new Partie(24,12);
         }
-        //p.getLeaderboard().chargerFichier();
         controller = new MainController(this, p);
+    }
+
+    public void setPartie(Partie p) {
+        this.p = p;
     }
 
     @Override
@@ -65,6 +74,12 @@ public class MainWindow extends AppCompatActivity {
 
     public void MenuToGrille(View view){
         controller.MenuToGrille();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("Partie",p);
     }
 
     @Override
