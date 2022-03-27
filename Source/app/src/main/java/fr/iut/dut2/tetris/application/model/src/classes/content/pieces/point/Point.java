@@ -4,9 +4,6 @@ package fr.iut.dut2.tetris.application.model.src.classes.content.pieces.point;
  * Classe représentant un point.
  */
 public class Point extends PointBase {
-    public int x;
-    public int y;
-
     /**
      * Constructeur d'un point.
      *
