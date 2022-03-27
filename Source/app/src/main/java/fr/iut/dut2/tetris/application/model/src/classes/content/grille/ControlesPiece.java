@@ -48,7 +48,7 @@ public class ControlesPiece{
      *
      * @param grille grille de jeu
      */
-    void addNewPiece(@NonNull Grille grille) {
+    protected void addNewPiece(@NonNull Grille grille) {
         Random rand = new Random();
         int xPos = nombreDeColonne / 2 - 1;
         grille.type = rand.nextInt(7) + 1;
@@ -72,7 +72,7 @@ public class ControlesPiece{
      * @param mtype  mouvement demandé
      * @param grille grille de jeu
      */
-    void movePiece(MovePiece mtype, @NonNull Grille grille) {
+    public void movePiece(MovePiece mtype, @NonNull Grille grille) {
         if (grille.currentPiece.isValideMove(mtype)) {
             grille.currentPiece.clear();
             grille.currentPiece.doMouvement(mtype);
@@ -88,7 +88,7 @@ public class ControlesPiece{
      * @param y      position dans les y du point sur la grille
      * @param grille grille de jeu
      */
-    void setPiece(int x, int y, Grille grille) {
+    public void setPiece(int x, int y, Grille grille) {
         if (x >= 0 && x < nombreDeColonne && y >= 0 && y < nombreDeLigne) {
             grille.grille[y][x] = grille.type;
         }
