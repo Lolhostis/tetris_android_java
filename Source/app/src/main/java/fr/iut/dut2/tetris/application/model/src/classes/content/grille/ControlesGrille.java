@@ -42,7 +42,7 @@ public class ControlesGrille{
      * @param grille grille de jeu
      * @return retourne un booléen disant si l'emplacement est vide ou non
      */
-    boolean isBusy(int x, int y, int[][] grille) {
+    public boolean isBusy(int x, int y, int[][] grille) {
         if (x < 1 || x > nombreDeColonne - 1 || y < 0 || y > nombreDeLigne - 1) {
             return true;
         }
@@ -54,7 +54,7 @@ public class ControlesGrille{
      *
      * @param grille grille de jeu
      */
-    void update(int[][] grille) {
+    protected void update(int[][] grille) {
         for (int i = 0; i < nombreDeLigne; i++) {
             for (int j = 0; j < nombreDeColonne; j++) {
                 if (i == nombreDeLigne - 1 || j == 0 || j == nombreDeColonne - 1)
@@ -76,7 +76,7 @@ public class ControlesGrille{
      * @param y      position dans les y du point sur la grille
      * @param grille grille de jeu
      */
-    void clear(int x, int y, int[][] grille) {
+    public void clear(int x, int y, int[][] grille) {
         Log.d("Position",y + " | " + x);
 
         if (x >= 0 || x < nombreDeColonne - 1 || y >= 0 || y < nombreDeLigne)
@@ -89,7 +89,7 @@ public class ControlesGrille{
      * @param grille grille de jeu
      * @param partie partie possédant les attributs nécessaires
      */
-    void clearFullLine(int[][] grille, Partie partie) {
+    protected void clearFullLine(int[][] grille, Partie partie) {
         for (int i = 0; i < nombreDeLigne; i++) {
             int tmp = 0;
             for (int j = 0; j < nombreDeColonne; j++) {
@@ -108,7 +108,7 @@ public class ControlesGrille{
      * @param ligne  numéro de la ligne à descendre
      * @param grille grille de jeu
      */
-    void descendreLignes(int ligne, int[][] grille) {
+    protected void descendreLignes(int ligne, int[][] grille) {
         while (ligne > 0) {
             if (nombreDeColonne >= 0) System.arraycopy(grille[ligne - 1], 0, grille[ligne], 0, nombreDeColonne);
             ligne--;
@@ -123,7 +123,7 @@ public class ControlesGrille{
      *
      * @param grille grille de jeu
      */
-    void clearGrille(int[][] grille) {
+    public void clearGrille(int[][] grille) {
         for (int x = 1; x < nombreDeColonne - 1; x++) {
             for (int y = 0; y < nombreDeLigne; y++) {
                 grille[y][x] = -1;
